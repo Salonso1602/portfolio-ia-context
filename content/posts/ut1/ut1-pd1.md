@@ -51,7 +51,7 @@ Por otro lado, TensorFlow está mas centrado para redes neuronales y deep learni
 
 ## Algoritmos de ML
 **La siguiente figura muestra una clasificación típica de algoritmos y aplicaciones de los mismos.**    
-![pelican](images\ut1pd1\image-2.png)    
+![Pelican](..\..\images\ut1pd1\image-2.png)    
 
 A partir de ésta, analiza algunas de las herramientas / plataformas que identificaste en
 el Ejercicio 2, observando cuáles algoritmos son soportados, y haciendo una revisión
@@ -59,7 +59,7 @@ rápida de los parámetros que aceptan. Haz una tabla comparativa para al menos 
 herramientas. Asegúrate de incluir RapidMiner.     
 
 ---  
-![pelican](images\ut1pd1\image-1.png)  
+![Pelican](..\..\images\ut1pd1\image-1.png)  
 
 --- 
 
@@ -84,11 +84,11 @@ Cuenta con 6 pasos:
 - **Despliegue**  
  Consiste en integrar los descubrimientos con el negocio, utilizar lo que se descubrió para mejorar. 
 
-![pelican](images\ut1pd1\image.png)  
+![Pelican](..\..\images\ut1pd1\image.png)  
 
 Procesos alternativos a CRISP-DM son KDD y SEMMA.
 KDD o Descubrimiento de Conocimiento en Bases de Datos es un proceso para el data mining en una escala macro. Se centra en encontrar patrones en datos para llevar a nuevos conocimientos. Este método cuenta con 9 fases, donde solo 1 de estos es la minería de los datos en sí. En términos amplios, es similar a CRISP.  
-![pelican](images\ut1pd1\KDD-Salud-Electronica-1024x428.png)  
+![Pelican](..\..\images\ut1pd1\KDD-Salud-Electronica-1024x428.png)  
 
 SEMMA es un proceso desarrollado por el Instituto SAS. SEMMA es un acrónimo para las fases que engloba este proceso: Sample, Explore, Modify, Model y Assess. Este modelo es más corto y al pie, mas enfocado en la construcción de un modelo apto y no tanto en el valor al negocio que debe aportar, no porque este no importe sino porque se da como entendido.
 
