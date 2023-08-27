@@ -1,6 +1,6 @@
-Title: My First Project
-Date: 2016-02-03 10:20
-Category: Regression
+Title: Intro a Pandas
+Date: 2023-08-22
+Category: Intro
 
 
 Importamos librerias y datos de UCI
