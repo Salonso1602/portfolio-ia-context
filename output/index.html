@@ -4,21 +4,146 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>portfolio ia</title>
+        <title>Portfolio de Intro a Aprendizaje Automático</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">portfolio ia</a></h1>
+                <h1><a href="/">Portfolio de Intro a Aprendizaje Automático</a></h1>
                 <nav><ul>
                     <li><a href="/category/intro.html">Intro</a></li>
+                    <li><a href="/category/investigacion-y-analisis.html">Investigación y Análisis</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/intro-a-pandas.html">Intro a Pandas</a></h1>
+                    <h1 class="entry-title"><a href="/evaluacion-de-set-wine.html">Evaluación de Set "Wine"</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-08-22T00:00:00-03:00">
+                Published: mar. 22 Agosto 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
+        </address>
+<p>In <a href="/category/investigacion-y-analisis.html">Investigación y Análisis</a>.</p>
+
+</footer><!-- /.post-info --><h1>Wine Dataset: Investigación de set</h1>
+<p>Este set contiene 14 variables químicas de vino hechos en una región de Italia, pero de 3 viñedos diferentes. Es un set bastante limpio sin datos faltantes.<br>
+No presenta un problema como tal, sino que provee datos que nos permiten encontrar estructuras y consistencias entre los vinos de cada viñedo, presentando un claro problema de clasificación, donde a partir de cualidades podemos tratar de inferir a que viñedo pertenecería.  </p>
+<h2>Atributos</h2>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class</td>
+<td>Categórico</td>
+<td>Número del Viñedo del que proviene, atributo objetivo.</td>
+</tr>
+<tr>
+<td>Alcohol</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Malicacid</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Ash</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Alcalinity_of_ash</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Magnesium</td>
+<td>Entero</td>
+<td></td>
+</tr>
+<tr>
+<td>Total_phenols</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Flavanoids</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Nonflavanoid_phenols</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Proanthocyanins</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Color_intensity</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Hue</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>0D280_0D315_of_diluted_wines</td>
+<td>Real</td>
+<td></td>
+</tr>
+<tr>
+<td>Proline</td>
+<td>Entero</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>Estadísticas y Distribuciones</h3>
+<p><img alt="Pelican" src="../images/ut2pd1/image.png"><br>
+<img alt="Pelican" src="../images/ut2pd1/image-1.png"><br>
+<img alt="Pelican" src="../images/ut2pd1/image-2.png">  </p>
+<h2>Proceso Utilizado y Resultados</h2>
+<p><img alt="Pelican" src="../images/ut2pd1/image-3.png">  </p>
+<ul>
+<li>Las particiones son automáticas y dividen en conjuntos de 70/30 los datos, para entrenar y testear respectivamente.</li>
+</ul>
+<h3>Para datos sin normalizar</h3>
+<p><img alt="Pelican" src="../images/ut2pd1/image-4.png">  </p>
+<h3>Para datos normalizados</h3>
+<p><img alt="Pelican" src="../images/ut2pd1/image-5.png"></p>
+<h2>Conclusiones</h2>
+<p>Se denota una mayor precisión de clasificación en los datos que nos normalizados previamente a entrenar al modelo, una diferencia considerable (aproximadamente 10%).<br>
+Esto se puede deber a que el modelo entrenarse con datos distribuidos en rangos similares, logra encontrar estructuras específicas mejor, por lo que es mejor clasificando, mientras que datos con rangos muy diferentes le es más difícil inferir características específicas.  </p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/intro-a-pandas.html" rel="bookmark"
+                           title="Permalink to Intro a Pandas">Intro a Pandas</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-08-22T00:00:00-03:00">
                 Published: mar. 22 Agosto 2023
@@ -29,7 +154,7 @@
         </address>
 <p>In <a href="/category/intro.html">Intro</a>.</p>
 
-</footer><!-- /.post-info --><p>Importamos librerias y datos de UCI</p>
+</footer><!-- /.post-info -->                <p>Importamos librerias y datos de UCI</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data&quot;</span>
@@ -39,36 +164,10 @@
 <span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
 </code></pre></div>
 
-<p>"pandas" nos retorna un DataFrame, un tipo de dato nuevo con amplias funcionalidades y métodos que nos facilita la manipulación de los datos.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#Medias</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Medias: &quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</code></pre></div>
-
-<p><em>Numeric Only nos permite calcular las medias solo de las columnas numericas, para evitar errores.</em></p>
-<div class="highlight"><pre><span></span><code><span class="c1">#Desviación Estandar</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Desviación Estandar: &quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1">#Varianzas</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Varianzas: &quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1">#Conteos de clases</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cant. Setosa:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">((</span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Iris-setosa&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cant. Versicolor:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">((</span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Iris-versicolor&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cant. Virginica:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">((</span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Iris-virginica&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</code></pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>"pandas" nos retorna un DataFrame, un tipo de dato nuevo con amplias funcionalidades y métodos que nos …</p>
+                <a class="readmore" href="/intro-a-pandas.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -103,18 +202,17 @@ responder:</em>
                 <div class="blogroll">
                         <h2>links</h2>
                         <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://archive.ics.uci.edu/datasets">UCI Datasets</a></li>
                             <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
+                            <li><a href="https://rapidminer.com/">RapidMiner</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
+                            <li><a href="https://github.com/Salonso1602">Github</a></li>
+                            <li><a href="https://www.linkedin.com/in/santiago-rafael-alonso-mendez-374106218/">LinkedIn</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->

@@ -1,5 +1,5 @@
 AUTHOR = 'salonso1602'
-SITENAME = 'portfolio ia'
+SITENAME = 'Portfolio de Intro a Aprendizaje Automático'
 SITEURL = ''
 
 PATH = 'content'
@@ -16,14 +16,13 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'https://getpelican.com/'),
+LINKS = (('UCI Datasets', 'https://archive.ics.uci.edu/datasets'),
          ('Python.org', 'https://www.python.org/'),
-         ('Jinja2', 'https://palletsprojects.com/p/jinja/'),
-         ('You can modify those links in your config file', '#'),)
+         ('RapidMiner', 'https://rapidminer.com/'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Github', 'https://github.com/Salonso1602'),
+          ('LinkedIn', 'https://www.linkedin.com/in/santiago-rafael-alonso-mendez-374106218/'),)
 
 DEFAULT_PAGINATION = 10
 
