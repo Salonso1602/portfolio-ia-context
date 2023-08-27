@@ -1,0 +1,11 @@
+{
+    "spellright.language": [
+        "en",
+        "es"
+    ],
+    "spellright.documentTypes": [
+        "latex",
+        "plaintext"
+    ],
+    "cSpell.language": "en,es,es-ES,en-US"
+}
