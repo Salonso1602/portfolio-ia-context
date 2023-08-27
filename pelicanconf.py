@@ -1,12 +1,13 @@
 AUTHOR = 'salonso1602'
 SITENAME = 'Portfolio de Intro a Aprendizaje Automático'
-SITEURL = ''
+SITEURL = '/'
 
 PATH = 'content'
 
 TIMEZONE = 'America/Argentina/Buenos_Aires'
 
 DEFAULT_LANG = 'Spanish'
+
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -25,6 +26,8 @@ SOCIAL = (('Github', 'https://github.com/Salonso1602'),
           ('LinkedIn', 'https://www.linkedin.com/in/santiago-rafael-alonso-mendez-374106218/'),)
 
 DEFAULT_PAGINATION = 10
+
+DEFAULT_CATEGORY = 'Home'
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
