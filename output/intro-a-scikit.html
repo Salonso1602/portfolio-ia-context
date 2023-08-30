@@ -4,8 +4,9 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>Portfolio de Intro a Aprendizaje Automático - salonso1602</title>
+        <title>Intro a Scikit</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="En este ejercicio se practicará pre procesamiento de datos y recuperado por python Descargar el dataset “wine” del repositorio UCI y cargar el..." />
 </head>
 
 <body id="index" class="home">
@@ -13,14 +14,19 @@
                 <h1><a href="/">Portfolio de Intro a Aprendizaje Automático</a></h1>
                 <nav><ul>
                     <li><a href="/category/home.html">Home</a></li>
-                    <li><a href="/category/intro.html">Intro</a></li>
+                    <li class="active"><a href="/category/intro.html">Intro</a></li>
                     <li><a href="/category/investigacion-y-analisis.html">Investigación y Análisis</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/intro-a-scikit.html" rel="bookmark"
+           title="Permalink to Intro a Scikit">Intro a Scikit</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/intro-a-scikit.html">Intro a Scikit</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-08-30T00:00:00-03:00">
                 Published: mié. 30 Agosto 2023
@@ -31,7 +37,7 @@
         </address>
 <p>In <a href="/category/intro.html">Intro</a>.</p>
 
-</footer><!-- /.post-info --><h2>En este ejercicio se practicará pre procesamiento de datos y recuperado por python</h2>
+</footer><!-- /.post-info -->      <h2>En este ejercicio se practicará pre procesamiento de datos y recuperado por python</h2>
 <ol>
 <li>Descargar el dataset “wine” del repositorio UCI y cargar el dataset en formato CSV.</li>
 <li>Imprimir todas las columnas de las primeras 10 filas.</li>
@@ -518,122 +524,11 @@ min                        1.330000   312.000000
 50%                        2.775000   675.000000  
 75%                        3.092500  1050.000000  
 max                        3.580000  1480.000000
-</code></pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/evaluacion-de-set-wine.html" rel="bookmark"
-                           title="Permalink to Evaluación de Set "Wine"">Evaluación de Set "Wine"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-08-22T00:00:00-03:00">
-                Published: mar. 22 Agosto 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
-        </address>
-<p>In <a href="/category/investigacion-y-analisis.html">Investigación y Análisis</a>.</p>
-
-</footer><!-- /.post-info -->                <h1>Wine Dataset: Investigación de set</h1>
-<p>Este set contiene 14 variables químicas de vino hechos en una región de Italia, pero de 3 viñedos diferentes. Es un set bastante limpio sin datos faltantes.<br>
-No presenta un problema como tal, sino que provee datos que nos permiten encontrar estructuras y consistencias entre …</p>
-                <a class="readmore" href="/evaluacion-de-set-wine.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/intro-a-pandas.html" rel="bookmark"
-                           title="Permalink to Intro a Pandas">Intro a Pandas</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-08-22T00:00:00-03:00">
-                Published: mar. 22 Agosto 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
-        </address>
-<p>In <a href="/category/intro.html">Intro</a>.</p>
-
-</footer><!-- /.post-info -->                <p>Importamos librerias y datos de UCI</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data&quot;</span>
-
-<span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">]</span>
-
-<span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
 </code></pre></div>
+    </div><!-- /.entry-content -->
 
-<p>"pandas" nos retorna un DataFrame, un tipo de dato nuevo con amplias funcionalidades y métodos que nos …</p>
-                <a class="readmore" href="/intro-a-pandas.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/intro-machine-learning.html" rel="bookmark"
-                           title="Permalink to Intro Machine Learning">Intro Machine Learning</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-08-15T00:00:00-03:00">
-                Published: mar. 15 Agosto 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
-        </address>
-<p>In <a href="/category/intro.html">Intro</a>.</p>
-
-</footer><!-- /.post-info -->                <h1>UT1 PD1 Introducción a Machine Learning</h1>
-<h2>¿Qué es “Machine Learning”?</h2>
-<p><em>Hacer una búsqueda rápida y listar al menos 3 definiciones de “Machine Learning” y
-responder:</em>
-- <em>¿qué tiene en común y en qué se diferencia de “Inteligencia Artificial”?</em>
-- <em>¿qué tiene en común y en qué se diferencia de “Análisis Estadístico”?</em>
-- <em>¿Cómo …</em></p>
-                <a class="readmore" href="/intro-machine-learning.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/bienvenido.html" rel="bookmark"
-                           title="Permalink to Bienvenido">Bienvenido</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-08-08T00:00:00-03:00">
-                Published: mar. 08 Agosto 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
-        </address>
-<p>In <a href="/category/home.html">Home</a>.</p>
-
-</footer><!-- /.post-info -->                <h1>Portfolio de Aprendizaje Automático</h1>
-<p>En el presente portfolio recopilaremos tanto contenido teórico y conceptual de la inteligencia artificial en las áreas de machine learning, como también la investigación y trabajo en casos particulares de forma de demostración.</p>
-<p>Se trabajará con herramientas como RapidMiner para desarrollos más gráficos del entrenamiento y …</p>
-                <a class="readmore" href="/bienvenido.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
