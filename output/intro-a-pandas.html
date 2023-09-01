@@ -38,7 +38,7 @@
 <p>In <a href="/category/intro.html">Intro</a>.</p>
 
 </footer><!-- /.post-info -->      <p>Importamos librerias y datos de UCI</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data&quot;</span>
 
@@ -48,23 +48,23 @@
 </code></pre></div>
 
 <p>"pandas" nos retorna un DataFrame, un tipo de dato nuevo con amplias funcionalidades y métodos que nos facilita la manipulación de los datos.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#Medias</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">#Medias</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Medias: &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </code></pre></div>
 
 <p><em>Numeric Only nos permite calcular las medias solo de las columnas numericas, para evitar errores.</em></p>
-<div class="highlight"><pre><span></span><code><span class="c1">#Desviación Estandar</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">#Desviación Estandar</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Desviación Estandar: &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="c1">#Varianzas</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">#Varianzas</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Varianzas: &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="c1">#Conteos de clases</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">#Conteos de clases</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cant. Setosa:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">((</span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Iris-setosa&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cant. Versicolor:&quot;</span><span class="p">)</span>
