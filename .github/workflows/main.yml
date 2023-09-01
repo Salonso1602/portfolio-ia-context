@@ -31,8 +31,8 @@ jobs:
         git credential reject
         git config user.name "Santiago Alonso"
         git config user.email santiago.ralonso@correo.ucu.edu.uy
-        git config user.Username "Salonso1602"
-        git config user.password "${{ secrets.PAT }}"
+        git config user.username "${{ secrets.PAT }}"
+        git config.helper store
         git add .
         git commit -m "Copiar cambios desde $SOURCE_REPO_URL"
         git push origin main
