@@ -31,6 +31,7 @@ jobs:
         git config user.name "Santiago Alonso"
         git config user.email santiago.ralonso@correo.ucu.edu.uy
         git config credential.username "${{ secrets.PAT }}"
+        git config credential.password "${{ secrets.PAT }}"
         git config credential.helper store
         git add .
         git commit -m "Copiar cambios desde $SOURCE_REPO_URL"
