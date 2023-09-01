@@ -8,3 +8,5 @@ En el presente portfolio recopilaremos tanto contenido teórico y conceptual de 
 
 Se trabajará con herramientas como RapidMiner para desarrollos más gráficos del entrenamiento y aplicación de modelos, y python para aplicaciones mas integrables a otros sistemas.
 
+Accede a cualquiera de las secciones para empezar a ver mi trabajo.
+
