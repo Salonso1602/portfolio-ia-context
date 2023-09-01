@@ -1,0 +1,38 @@
+name: Copy Changes
+
+on:
+  push:
+    branches:
+      - main # Cambia esto al nombre de tu rama principal
+
+jobs:
+  copy-changes:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Copy Changes to Another Repository
+      run: |
+        # Configura las variables
+        SOURCE_REPO_URL=https://github.com/Salonso1602/portfolio-ia-context.git
+        DEST_REPO_URL=https://github.com/Salonso1602/salonso1602.github.io.git
+        FOLDER_PATH=./output
+
+        # Clona el repositorio de destino
+        git clone $DEST_REPO_URL copy-repo
+        
+        # Copia los cambios de la carpeta específica al repositorio de destino
+        rsync -av $FOLDER_PATH/ copy-repo/
+
+        # Realiza el commit y el push de los cambios
+        cd copy-repo
+        git config user.name "salonso1602"
+        git config user.email "gatomono02@gmail.com"
+        git add .
+        git commit -m "Copiar cambios desde $SOURCE_REPO_URL"
+        git push origin main # Cambia 'main' al nombre de tu rama principal
+
+    env:
+      GIT_SSH: ${{ secrets.GITHUB_TOKEN }}
