@@ -29,5 +29,16 @@ DEFAULT_PAGINATION = 10
 
 DEFAULT_CATEGORY = 'Home'
 
+PAGE_PATHS = ['pages']
+
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.extra': {},
+        'markdown.extensions.codehilite': {},
+        'markdown.extensions.toc': {},
+    },
+    'output_format': 'html5',
+}
+
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
