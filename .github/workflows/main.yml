@@ -30,9 +30,12 @@ jobs:
         cd copy-repo
         git config user.name "Salonso1602"
         git config user.email "santiago.ralonso@correo.ucu.edu.uy"
+        git config user.username "Salonso1602"
+        git config user.password "${{secrets.PAT}}"
         git add .
         git commit -m "Copiar cambios desde $SOURCE_REPO_URL"
         git push origin main # Cambia 'main' al nombre de tu rama principal
 
     env:
       GIT_SSH: ${{ secrets.GITHUB_TOKEN }}
+      PAT: ${{ secrets.PAT }}
