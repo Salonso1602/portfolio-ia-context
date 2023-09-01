@@ -28,7 +28,6 @@ jobs:
 
         # Realiza el commit y el push de los cambios
         cd copy-repo
-        git credential reject
         git config user.name "Santiago Alonso"
         git config user.email santiago.ralonso@correo.ucu.edu.uy
         git config user.username "${{ secrets.PAT }}"
