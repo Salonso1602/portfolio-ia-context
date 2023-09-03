@@ -1,4 +1,4 @@
-Title: Intro a Scikit
+Title: Intro a Sklearn
 Date: 2023-08-30
 Category: Intro
 
