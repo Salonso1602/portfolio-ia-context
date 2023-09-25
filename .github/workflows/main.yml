@@ -22,9 +22,9 @@ jobs:
 
         git config user.name "Santiago Alonso"
         git config user.email santiago.ralonso@correo.ucu.edu.uy
-        git config user.username "${{ secrets.PAT }}"
-        git config user.password "${{ secrets.PAT }}"
-        git config --global credential.helper ""
+
+        git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/portfolio-ia-context.git
+        git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
         
         git config credential.username "${{ secrets.PAT }}"
         git config credential.password "${{ secrets.PAT }}"
