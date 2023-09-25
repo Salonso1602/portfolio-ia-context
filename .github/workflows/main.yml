@@ -28,6 +28,9 @@ jobs:
 
         # Realiza el commit y el push de los cambios
         cd copy-repo
+
+        git config --global user.email "santiago.ralonso@correo.ucu.edu.uy"
+        git config --global user.name "Santiago Alonso"
         
         git add .
         git commit -m "Copiar cambios desde $SOURCE_REPO_URL"
