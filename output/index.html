@@ -12,6 +12,7 @@
         <header id="banner" class="body">
                 <h1><a href="/">Portfolio de Intro a Aprendizaje Automático</a></h1>
                 <nav><ul>
+                    <li><a href="/category/algoritmos-machine-learning.html">Algoritmos Machine Learning</a></li>
                     <li><a href="/category/home.html">Home</a></li>
                     <li><a href="/category/intro.html">Intro</a></li>
                     <li><a href="/category/investigacion-y-analisis.html">Investigación y Análisis</a></li>
@@ -20,42 +21,57 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/intro-a-sklearn.html">Intro a Sklearn</a></h1>
+                    <h1 class="entry-title"><a href="/algoritmo-linear-discriminant-analysis.html">Algoritmo Linear Discriminant Analysis</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2023-08-30T00:00:00-03:00">
-                Published: mié. 30 Agosto 2023
+        <abbr class="published" title="2023-09-25T00:00:00-03:00">
+                Published: lun. 25 Setiembre 2023
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
         </address>
-<p>In <a href="/category/intro.html">Intro</a>.</p>
+<p>In <a href="/category/algoritmos-machine-learning.html">Algoritmos Machine Learning</a>.</p>
 
-</footer><!-- /.post-info --><h2 id="en-este-ejercicio-se-practicara-pre-procesamiento-de-datos-y-recuperado-por-python">En este ejercicio se practicará pre procesamiento de datos y recuperado por python</h2>
-<ol>
-<li>Descargar el dataset “wine” del repositorio UCI y cargar el dataset en formato CSV.</li>
-<li>Imprimir todas las columnas de las primeras 10 filas.</li>
-<li>Convertir los valores numéricos en string a float, en caso de ser necesario</li>
-<li>Obtener los valores mínimos y máximos correspondientes a cada columna.</li>
-<li>Obtener la media de los valores de cada columna.</li>
-<li>Obtener la desviación estándar de los valores de cada columna.</li>
-<li>Normalizar los valores el dataset original.</li>
-<li>Estandarizar los valores del dataset original.</li>
-<li>Dividir el dataset en conjuntos de entrenamiento y testing.</li>
-</ol>
-<hr>
-<p><em>Importamos el csv de la página de UCI:</em></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+</footer><!-- /.post-info --><h1 id="clasificacion-por-lda-en-python">Clasificación por LDA en python</h1>
+<p>Análisis Discriminante Lineal es un algoritmo de machine learning que nos permite la clasificación multi-clase de datos, permitiendo la predicción de campos polinomiales.<br>
+En el presente trabajo demostraremos un proceso básico de este algoritmo en Python con SciKit Learn.  </p>
+<h2 id="analisis-preliminar-de-datos">Análisis preliminar de Datos</h2>
+<p>Utilizaremos un conjunto de datos reducido, con parámetros abstractos.  </p>
+<table>
+<thead>
+<tr>
+<th><strong>Atributo</strong></th>
+<th><strong>Tipo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>Label (var objetivo)</td>
+<td>polinomial</td>
+</tr>
+</tbody>
+</table>
+<h2 id="procedimiento-en-python">Procedimiento en Python</h2>
+<p>Primero importamos librerías y cargamos el dataset.  </p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">,</span> <span class="n">classification_report</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine&quot;</span>
-
-<span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;Alcohol&quot;</span><span class="p">,</span> <span class="s2">&quot;Malic acid&quot;</span><span class="p">,</span> <span class="s2">&quot;Ash&quot;</span><span class="p">,</span> <span class="s2">&quot;Alcalinity of ash&quot;</span><span class="p">,</span> <span class="s2">&quot;Magnesium&quot;</span><span class="p">,</span> <span class="s2">&quot;Total phenols&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;Flavanoids&quot;</span><span class="p">,</span> <span class="s2">&quot;Nonflavanoid phenols&quot;</span><span class="p">,</span> <span class="s2">&quot;Proanthocyanins&quot;</span><span class="p">,</span> <span class="s2">&quot;Color intensity&quot;</span><span class="p">,</span> <span class="s2">&quot;Hue&quot;</span><span class="p">,</span> <span class="s2">&quot;OD280/OD315 of diluted wines&quot;</span><span class="p">,</span> <span class="s2">&quot;Proline&quot;</span> <span class="p">]</span>
-
-<span class="n">wine</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="s2">&quot;.data&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
-<span class="n">wine</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">input_file</span> <span class="o">=</span> <span class="s2">&quot;sample.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div>
 
 <div>
@@ -76,454 +92,243 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Class</th>
-      <th>Alcohol</th>
-      <th>Malic acid</th>
-      <th>Ash</th>
-      <th>Alcalinity of ash</th>
-      <th>Magnesium</th>
-      <th>Total phenols</th>
-      <th>Flavanoids</th>
-      <th>Nonflavanoid phenols</th>
-      <th>Proanthocyanins</th>
-      <th>Color intensity</th>
-      <th>Hue</th>
-      <th>OD280/OD315 of diluted wines</th>
-      <th>Proline</th>
+      <th>x</th>
+      <th>y</th>
+      <th>label</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>count</th>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
-      <td>178.000000</td>
+      <th>13</th>
+      <td>8.375419</td>
+      <td>0.520687</td>
+      <td>1</td>
     </tr>
     <tr>
-      <th>mean</th>
-      <td>1.938202</td>
-      <td>13.000618</td>
-      <td>2.336348</td>
-      <td>2.366517</td>
-      <td>19.494944</td>
-      <td>99.741573</td>
-      <td>2.295112</td>
-      <td>2.029270</td>
-      <td>0.361854</td>
-      <td>1.590899</td>
-      <td>5.058090</td>
-      <td>0.957449</td>
-      <td>2.611685</td>
-      <td>746.893258</td>
+      <th>8</th>
+      <td>1.088070</td>
+      <td>1.150220</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>std</th>
-      <td>0.775035</td>
-      <td>0.811827</td>
-      <td>1.117146</td>
-      <td>0.274344</td>
-      <td>3.339564</td>
-      <td>14.282484</td>
-      <td>0.625851</td>
-      <td>0.998859</td>
-      <td>0.124453</td>
-      <td>0.572359</td>
-      <td>2.318286</td>
-      <td>0.228572</td>
-      <td>0.709990</td>
-      <td>314.907474</td>
+      <th>0</th>
+      <td>2.781084</td>
+      <td>2.550537</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>min</th>
-      <td>1.000000</td>
-      <td>11.030000</td>
-      <td>0.740000</td>
-      <td>1.360000</td>
-      <td>10.600000</td>
-      <td>70.000000</td>
-      <td>0.980000</td>
-      <td>0.340000</td>
-      <td>0.130000</td>
-      <td>0.410000</td>
-      <td>1.280000</td>
-      <td>0.480000</td>
-      <td>1.270000</td>
-      <td>278.000000</td>
+      <th>11</th>
+      <td>5.332441</td>
+      <td>2.088627</td>
+      <td>1</td>
     </tr>
     <tr>
-      <th>25%</th>
-      <td>1.000000</td>
-      <td>12.362500</td>
-      <td>1.602500</td>
-      <td>2.210000</td>
-      <td>17.200000</td>
-      <td>88.000000</td>
-      <td>1.742500</td>
-      <td>1.205000</td>
-      <td>0.270000</td>
-      <td>1.250000</td>
-      <td>3.220000</td>
-      <td>0.782500</td>
-      <td>1.937500</td>
-      <td>500.500000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>2.000000</td>
-      <td>13.050000</td>
-      <td>1.865000</td>
-      <td>2.360000</td>
-      <td>19.500000</td>
-      <td>98.000000</td>
-      <td>2.355000</td>
-      <td>2.135000</td>
-      <td>0.340000</td>
-      <td>1.555000</td>
-      <td>4.690000</td>
-      <td>0.965000</td>
-      <td>2.780000</td>
-      <td>673.500000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>3.000000</td>
-      <td>13.677500</td>
-      <td>3.082500</td>
-      <td>2.557500</td>
-      <td>21.500000</td>
-      <td>107.000000</td>
-      <td>2.800000</td>
-      <td>2.875000</td>
-      <td>0.437500</td>
-      <td>1.950000</td>
-      <td>6.200000</td>
-      <td>1.120000</td>
-      <td>3.170000</td>
-      <td>985.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>3.000000</td>
-      <td>14.830000</td>
-      <td>5.800000</td>
-      <td>3.230000</td>
-      <td>30.000000</td>
-      <td>162.000000</td>
-      <td>3.880000</td>
-      <td>5.080000</td>
-      <td>0.660000</td>
-      <td>3.580000</td>
-      <td>13.000000</td>
-      <td>1.710000</td>
-      <td>4.000000</td>
-      <td>1680.000000</td>
+      <th>17</th>
+      <td>5.922597</td>
+      <td>1.881064</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<p><em>Podemos corroborar que se cargo correctamente inspeccionando las primeras 10 filas:</em></p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<p>Podemos visualizarlos mejor con SKLearn</p>
+<div class="codehilite"><pre><span></span><code><span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+<span class="n">cmap</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>   Class  Alcohol  Malic acid   Ash  Alcalinity of ash  Magnesium  \
-0      1    14.23        1.71  2.43               15.6        127   
-1      1    13.20        1.78  2.14               11.2        100   
-2      1    13.16        2.36  2.67               18.6        101   
-3      1    14.37        1.95  2.50               16.8        113   
-4      1    13.24        2.59  2.87               21.0        118   
-5      1    14.20        1.76  2.45               15.2        112   
-6      1    14.39        1.87  2.45               14.6         96   
-7      1    14.06        2.15  2.61               17.6        121   
-8      1    14.83        1.64  2.17               14.0         97   
-9      1    13.86        1.35  2.27               16.0         98
+<p><img alt="Pelican" src="../../images/ut3_ta7_files/ta7_5_0.png"></p>
+<p>Separamos las entradas de la salida y dividimos los datos para entrenar y testear.  </p>
+<div class="codehilite"><pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
-   Total phenols  Flavanoids  Nonflavanoid phenols  Proanthocyanins  \
-0           2.80        3.06                  0.28             2.29   
-1           2.65        2.76                  0.26             1.28   
-2           2.80        3.24                  0.30             2.81   
-3           3.85        3.49                  0.24             2.18   
-4           2.80        2.69                  0.39             1.82   
-5           3.27        3.39                  0.34             1.97   
-6           2.50        2.52                  0.30             1.98   
-7           2.60        2.51                  0.31             1.25   
-8           2.80        2.98                  0.29             1.98   
-9           2.98        3.15                  0.22             1.85
-
-   Color intensity   Hue  OD280/OD315 of diluted wines  Proline  
-0             5.64  1.04                          3.92     1065  
-1             4.38  1.05                          3.40     1050  
-2             5.68  1.03                          3.17     1185  
-3             7.80  0.86                          3.45     1480  
-4             4.32  1.04                          2.93      735  
-5             6.75  1.05                          2.85     1450  
-6             5.25  1.02                          3.58     1290  
-7             5.05  1.06                          3.58     1295  
-8             5.20  1.08                          2.85     1045  
-9             7.22  1.01                          3.55     1045
+<span class="n">train_X</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
-<p><em>Verificamos que todos los tipos son los correctos:</em></p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<p>Con los datos separados y definidos, entrenamos el modelo.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">lda</span> <span class="o">=</span> <span class="n">LinearDiscriminantAnalysis</span><span class="p">()</span>
+<span class="n">lda</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code><span class="nx">Class</span><span class="w">                             </span><span class="nx">int64</span>
-<span class="nx">Alcohol</span><span class="w">                         </span><span class="nx">float64</span>
-<span class="nx">Malic</span><span class="w"> </span><span class="nx">acid</span><span class="w">                      </span><span class="nx">float64</span>
-<span class="nx">Ash</span><span class="w">                             </span><span class="nx">float64</span>
-<span class="nx">Alcalinity</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">ash</span><span class="w">               </span><span class="nx">float64</span>
-<span class="nx">Magnesium</span><span class="w">                         </span><span class="nx">int64</span>
-<span class="nx">Total</span><span class="w"> </span><span class="nx">phenols</span><span class="w">                   </span><span class="nx">float64</span>
-<span class="nx">Flavanoids</span><span class="w">                      </span><span class="nx">float64</span>
-<span class="nx">Nonflavanoid</span><span class="w"> </span><span class="nx">phenols</span><span class="w">            </span><span class="nx">float64</span>
-<span class="nx">Proanthocyanins</span><span class="w">                 </span><span class="nx">float64</span>
-<span class="nx">Color</span><span class="w"> </span><span class="nx">intensity</span><span class="w">                 </span><span class="nx">float64</span>
-<span class="nx">Hue</span><span class="w">                             </span><span class="nx">float64</span>
-<span class="nx">OD280</span><span class="o">/</span><span class="nx">OD315</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">diluted</span><span class="w"> </span><span class="nx">wines</span><span class="w">    </span><span class="nx">float64</span>
-<span class="nx">Proline</span><span class="w">                           </span><span class="nx">int64</span>
-<span class="nx">dtype</span><span class="p">:</span><span class="w"> </span><span class="nx">object</span>
+<p>Y pasamos a la predicción y vemos el desempeño.  </p>
+<div class="codehilite"><pre><span></span><code><span class="n">y_pred</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predecidos&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Esperado&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_y</span><span class="p">)</span>
 </code></pre></div>
 
-<p><em>Obtenemos los minimos y máximos de los datos:</em></p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mínimos:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Máximos:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<div class="codehilite"><pre><span></span><code>Predecidos
+[1 0 1 0 1]
+Esperado
+[1 0 1 0 1]
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">Mínimos</span><span class="o">:</span>
-<span class="n">Class</span><span class="w">                             </span><span class="mf">1.00</span>
-<span class="n">Alcohol</span><span class="w">                          </span><span class="mf">11.03</span>
-<span class="n">Malic</span><span class="w"> </span><span class="n">acid</span><span class="w">                        </span><span class="mf">0.74</span>
-<span class="n">Ash</span><span class="w">                               </span><span class="mf">1.36</span>
-<span class="n">Alcalinity</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">ash</span><span class="w">                </span><span class="mf">10.60</span>
-<span class="n">Magnesium</span><span class="w">                        </span><span class="mf">70.00</span>
-<span class="n">Total</span><span class="w"> </span><span class="n">phenols</span><span class="w">                     </span><span class="mf">0.98</span>
-<span class="n">Flavanoids</span><span class="w">                        </span><span class="mf">0.34</span>
-<span class="n">Nonflavanoid</span><span class="w"> </span><span class="n">phenols</span><span class="w">              </span><span class="mf">0.13</span>
-<span class="n">Proanthocyanins</span><span class="w">                   </span><span class="mf">0.41</span>
-<span class="n">Color</span><span class="w"> </span><span class="n">intensity</span><span class="w">                   </span><span class="mf">1.28</span>
-<span class="n">Hue</span><span class="w">                               </span><span class="mf">0.48</span>
-<span class="n">OD280</span><span class="o">/</span><span class="n">OD315</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">diluted</span><span class="w"> </span><span class="n">wines</span><span class="w">      </span><span class="mf">1.27</span>
-<span class="n">Proline</span><span class="w">                         </span><span class="mf">278.00</span>
-<span class="n">dtype</span><span class="o">:</span><span class="w"> </span><span class="n">float64</span>
-<span class="o">--------------------</span>
-<span class="n">Máximos</span><span class="o">:</span>
-<span class="n">Class</span><span class="w">                              </span><span class="mf">3.00</span>
-<span class="n">Alcohol</span><span class="w">                           </span><span class="mf">14.83</span>
-<span class="n">Malic</span><span class="w"> </span><span class="n">acid</span><span class="w">                         </span><span class="mf">5.80</span>
-<span class="n">Ash</span><span class="w">                                </span><span class="mf">3.23</span>
-<span class="n">Alcalinity</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">ash</span><span class="w">                 </span><span class="mf">30.00</span>
-<span class="n">Magnesium</span><span class="w">                        </span><span class="mf">162.00</span>
-<span class="n">Total</span><span class="w"> </span><span class="n">phenols</span><span class="w">                      </span><span class="mf">3.88</span>
-<span class="n">Flavanoids</span><span class="w">                         </span><span class="mf">5.08</span>
-<span class="n">Nonflavanoid</span><span class="w"> </span><span class="n">phenols</span><span class="w">               </span><span class="mf">0.66</span>
-<span class="n">Proanthocyanins</span><span class="w">                    </span><span class="mf">3.58</span>
-<span class="n">Color</span><span class="w"> </span><span class="n">intensity</span><span class="w">                   </span><span class="mf">13.00</span>
-<span class="n">Hue</span><span class="w">                                </span><span class="mf">1.71</span>
-<span class="n">OD280</span><span class="o">/</span><span class="n">OD315</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">diluted</span><span class="w"> </span><span class="n">wines</span><span class="w">       </span><span class="mf">4.00</span>
-<span class="n">Proline</span><span class="w">                         </span><span class="mf">1680.00</span>
-<span class="n">dtype</span><span class="o">:</span><span class="w"> </span><span class="n">float64</span>
+<p>Podemos traer una tabla de desempeño más clara y específica. Nos devuelve la precisión para predecir cada clase, promedios, predicciones correctas(recall), puntaje f1 y otros.</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
 </code></pre></div>
 
-<p><em>Vemos las medias:</em></p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<div class="codehilite"><pre><span></span><code>              precision    recall  f1-score   support
+
+           0      1.000     1.000     1.000         2
+           1      1.000     1.000     1.000         3
+
+    accuracy                          1.000         5
+   macro avg      1.000     1.000     1.000         5
+weighted avg      1.000     1.000     1.000         5
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code><span class="nx">Class</span><span class="w">                             </span><span class="m m-Double">1.9</span><span class="mi">38202</span>
-<span class="nx">Alcohol</span><span class="w">                          </span><span class="m m-Double">13.0</span><span class="mi">00618</span>
-<span class="nx">Malic</span><span class="w"> </span><span class="nx">acid</span><span class="w">                        </span><span class="m m-Double">2.3</span><span class="mi">36348</span>
-<span class="nx">Ash</span><span class="w">                               </span><span class="m m-Double">2.3</span><span class="mi">66517</span>
-<span class="nx">Alcalinity</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">ash</span><span class="w">                </span><span class="m m-Double">19.4</span><span class="mi">94944</span>
-<span class="nx">Magnesium</span><span class="w">                        </span><span class="m m-Double">99.7</span><span class="mi">41573</span>
-<span class="nx">Total</span><span class="w"> </span><span class="nx">phenols</span><span class="w">                     </span><span class="m m-Double">2.2</span><span class="mi">95112</span>
-<span class="nx">Flavanoids</span><span class="w">                        </span><span class="m m-Double">2.0</span><span class="mi">29270</span>
-<span class="nx">Nonflavanoid</span><span class="w"> </span><span class="nx">phenols</span><span class="w">              </span><span class="m m-Double">0.3</span><span class="mi">61854</span>
-<span class="nx">Proanthocyanins</span><span class="w">                   </span><span class="m m-Double">1.5</span><span class="mi">90899</span>
-<span class="nx">Color</span><span class="w"> </span><span class="nx">intensity</span><span class="w">                   </span><span class="m m-Double">5.0</span><span class="mi">58090</span>
-<span class="nx">Hue</span><span class="w">                               </span><span class="m m-Double">0.9</span><span class="mi">57449</span>
-<span class="nx">OD280</span><span class="o">/</span><span class="nx">OD315</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">diluted</span><span class="w"> </span><span class="nx">wines</span><span class="w">      </span><span class="m m-Double">2.6</span><span class="mi">11685</span>
-<span class="nx">Proline</span><span class="w">                         </span><span class="m m-Double">746.8</span><span class="mi">93258</span>
-<span class="nx">dtype</span><span class="p">:</span><span class="w"> </span><span class="nx">float64</span>
+<p>También podemos producir la matriz de confusión</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 </code></pre></div>
 
-<p><em>Vemos las desviaciones:</em></p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<div class="codehilite"><pre><span></span><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x2849c60e970&gt;
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code><span class="nx">Class</span><span class="w">                             </span><span class="m m-Double">0.7</span><span class="mi">75035</span>
-<span class="nx">Alcohol</span><span class="w">                           </span><span class="m m-Double">0.8</span><span class="mi">11827</span>
-<span class="nx">Malic</span><span class="w"> </span><span class="nx">acid</span><span class="w">                        </span><span class="m m-Double">1.1</span><span class="mi">17146</span>
-<span class="nx">Ash</span><span class="w">                               </span><span class="m m-Double">0.2</span><span class="mi">74344</span>
-<span class="nx">Alcalinity</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">ash</span><span class="w">                 </span><span class="m m-Double">3.3</span><span class="mi">39564</span>
-<span class="nx">Magnesium</span><span class="w">                        </span><span class="m m-Double">14.2</span><span class="mi">82484</span>
-<span class="nx">Total</span><span class="w"> </span><span class="nx">phenols</span><span class="w">                     </span><span class="m m-Double">0.6</span><span class="mi">25851</span>
-<span class="nx">Flavanoids</span><span class="w">                        </span><span class="m m-Double">0.9</span><span class="mi">98859</span>
-<span class="nx">Nonflavanoid</span><span class="w"> </span><span class="nx">phenols</span><span class="w">              </span><span class="m m-Double">0.1</span><span class="mi">24453</span>
-<span class="nx">Proanthocyanins</span><span class="w">                   </span><span class="m m-Double">0.5</span><span class="mi">72359</span>
-<span class="nx">Color</span><span class="w"> </span><span class="nx">intensity</span><span class="w">                   </span><span class="m m-Double">2.3</span><span class="mi">18286</span>
-<span class="nx">Hue</span><span class="w">                               </span><span class="m m-Double">0.2</span><span class="mi">28572</span>
-<span class="nx">OD280</span><span class="o">/</span><span class="nx">OD315</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">diluted</span><span class="w"> </span><span class="nx">wines</span><span class="w">      </span><span class="m m-Double">0.7</span><span class="mi">09990</span>
-<span class="nx">Proline</span><span class="w">                         </span><span class="m m-Double">314.9</span><span class="mi">07474</span>
-<span class="nx">dtype</span><span class="p">:</span><span class="w"> </span><span class="nx">float64</span>
+<p><img alt="Pelican" src="../../images/ut3_ta7_files/ta7_15_1.png"></p>
+<p>Podemos comparar con Regresión Logística, ya que solo hay 2 clases</p>
+<div class="codehilite"><pre><span></span><code><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span> <span class="o">=</span> <span class="s1">&#39;l2&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;liblinear&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted vs Expected&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 </code></pre></div>
 
-<p><em>Para Normalizaciones y estandarizaciones usaremos librerias de scikit learn, en conjunto a pandas:</em></p>
-<div class="codehilite"><pre><span></span><code><span class="n">normal</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">estandar</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code>Predicted vs Expected
+              precision    recall  f1-score   support
 
-<span class="n">wineNormal</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">normal</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">wine</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">wine</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">wineEstandar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">estandar</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">wine</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">wine</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+           0      1.000     1.000     1.000         2
+           1      1.000     1.000     1.000         3
 
-<span class="c1"># Debemos sobrescribir la columna Class ya que no se deben normalizar sus valores</span>
+    accuracy                          1.000         5
+   macro avg      1.000     1.000     1.000         5
+weighted avg      1.000     1.000     1.000         5
 
-<span class="n">wineNormal</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wine</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]</span>
-<span class="n">wineEstandar</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wine</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalizado:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">wineNormal</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estándar:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">wineEstandar</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+---------------------------------------------------------------------------------
+&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay object at 0x000002849C3C0D00&gt;
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">Normalizado</span><span class="o">:</span>
-<span class="w">   </span><span class="n">Class</span><span class="w">   </span><span class="n">Alcohol</span><span class="w">  </span><span class="n">Malic</span><span class="w"> </span><span class="n">acid</span><span class="w">       </span><span class="n">Ash</span><span class="w">  </span><span class="n">Alcalinity</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">ash</span><span class="w">  </span><span class="n">Magnesium</span><span class="w">  </span><span class="o">\</span>
-<span class="mi">0</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">1.518613</span><span class="w">   </span><span class="o">-</span><span class="mf">0.562250</span><span class="w">  </span><span class="mf">0.232053</span><span class="w">          </span><span class="o">-</span><span class="mf">1.169593</span><span class="w">   </span><span class="mf">1.913905</span><span class="w">   </span>
-<span class="mi">1</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.246290</span><span class="w">   </span><span class="o">-</span><span class="mf">0.499413</span><span class="w"> </span><span class="o">-</span><span class="mf">0.827996</span><span class="w">          </span><span class="o">-</span><span class="mf">2.490847</span><span class="w">   </span><span class="mf">0.018145</span><span class="w">   </span>
-<span class="mi">2</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.196879</span><span class="w">    </span><span class="mf">0.021231</span><span class="w">  </span><span class="mf">1.109334</span><span class="w">          </span><span class="o">-</span><span class="mf">0.268738</span><span class="w">   </span><span class="mf">0.088358</span><span class="w">   </span>
-<span class="mi">3</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">1.691550</span><span class="w">   </span><span class="o">-</span><span class="mf">0.346811</span><span class="w">  </span><span class="mf">0.487926</span><span class="w">          </span><span class="o">-</span><span class="mf">0.809251</span><span class="w">   </span><span class="mf">0.930918</span><span class="w">   </span>
-<span class="mi">4</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.295700</span><span class="w">    </span><span class="mf">0.227694</span><span class="w">  </span><span class="mf">1.840403</span><span class="w">           </span><span class="mf">0.451946</span><span class="w">   </span><span class="mf">1.281985</span><span class="w">   </span>
-<span class="mi">5</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">1.481555</span><span class="w">   </span><span class="o">-</span><span class="mf">0.517367</span><span class="w">  </span><span class="mf">0.305159</span><span class="w">          </span><span class="o">-</span><span class="mf">1.289707</span><span class="w">   </span><span class="mf">0.860705</span><span class="w">   </span>
-<span class="mi">6</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">1.716255</span><span class="w">   </span><span class="o">-</span><span class="mf">0.418624</span><span class="w">  </span><span class="mf">0.305159</span><span class="w">          </span><span class="o">-</span><span class="mf">1.469878</span><span class="w">  </span><span class="o">-</span><span class="mf">0.262708</span><span class="w">   </span>
-<span class="mi">7</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">1.308617</span><span class="w">   </span><span class="o">-</span><span class="mf">0.167278</span><span class="w">  </span><span class="mf">0.890014</span><span class="w">          </span><span class="o">-</span><span class="mf">0.569023</span><span class="w">   </span><span class="mf">1.492625</span><span class="w">   </span>
-<span class="mi">8</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">2.259772</span><span class="w">   </span><span class="o">-</span><span class="mf">0.625086</span><span class="w"> </span><span class="o">-</span><span class="mf">0.718336</span><span class="w">          </span><span class="o">-</span><span class="mf">1.650049</span><span class="w">  </span><span class="o">-</span><span class="mf">0.192495</span><span class="w">   </span>
-<span class="mi">9</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">1.061565</span><span class="w">   </span><span class="o">-</span><span class="mf">0.885409</span><span class="w"> </span><span class="o">-</span><span class="mf">0.352802</span><span class="w">          </span><span class="o">-</span><span class="mf">1.049479</span><span class="w">  </span><span class="o">-</span><span class="mf">0.122282</span>
-
-<span class="w">   </span><span class="n">Total</span><span class="w"> </span><span class="n">phenols</span><span class="w">  </span><span class="n">Flavanoids</span><span class="w">  </span><span class="n">Nonflavanoid</span><span class="w"> </span><span class="n">phenols</span><span class="w">  </span><span class="n">Proanthocyanins</span><span class="w">  </span><span class="o">\</span>
-<span class="mi">0</span><span class="w">       </span><span class="mf">0.808997</span><span class="w">    </span><span class="mf">1.034819</span><span class="w">             </span><span class="o">-</span><span class="mf">0.659563</span><span class="w">         </span><span class="mf">1.224884</span><span class="w">   </span>
-<span class="mi">1</span><span class="w">       </span><span class="mf">0.568648</span><span class="w">    </span><span class="mf">0.733629</span><span class="w">             </span><span class="o">-</span><span class="mf">0.820719</span><span class="w">        </span><span class="o">-</span><span class="mf">0.544721</span><span class="w">   </span>
-<span class="mi">2</span><span class="w">       </span><span class="mf">0.808997</span><span class="w">    </span><span class="mf">1.215533</span><span class="w">             </span><span class="o">-</span><span class="mf">0.498407</span><span class="w">         </span><span class="mf">2.135968</span><span class="w">   </span>
-<span class="mi">3</span><span class="w">       </span><span class="mf">2.491446</span><span class="w">    </span><span class="mf">1.466525</span><span class="w">             </span><span class="o">-</span><span class="mf">0.981875</span><span class="w">         </span><span class="mf">1.032155</span><span class="w">   </span>
-<span class="mi">4</span><span class="w">       </span><span class="mf">0.808997</span><span class="w">    </span><span class="mf">0.663351</span><span class="w">              </span><span class="mf">0.226796</span><span class="w">         </span><span class="mf">0.401404</span><span class="w">   </span>
-<span class="mi">5</span><span class="w">       </span><span class="mf">1.562093</span><span class="w">    </span><span class="mf">1.366128</span><span class="w">             </span><span class="o">-</span><span class="mf">0.176095</span><span class="w">         </span><span class="mf">0.664217</span><span class="w">   </span>
-<span class="mi">6</span><span class="w">       </span><span class="mf">0.328298</span><span class="w">    </span><span class="mf">0.492677</span><span class="w">             </span><span class="o">-</span><span class="mf">0.498407</span><span class="w">         </span><span class="mf">0.681738</span><span class="w">   </span>
-<span class="mi">7</span><span class="w">       </span><span class="mf">0.488531</span><span class="w">    </span><span class="mf">0.482637</span><span class="w">             </span><span class="o">-</span><span class="mf">0.417829</span><span class="w">        </span><span class="o">-</span><span class="mf">0.597284</span><span class="w">   </span>
-<span class="mi">8</span><span class="w">       </span><span class="mf">0.808997</span><span class="w">    </span><span class="mf">0.954502</span><span class="w">             </span><span class="o">-</span><span class="mf">0.578985</span><span class="w">         </span><span class="mf">0.681738</span><span class="w">   </span>
-<span class="mi">9</span><span class="w">       </span><span class="mf">1.097417</span><span class="w">    </span><span class="mf">1.125176</span><span class="w">             </span><span class="o">-</span><span class="mf">1.143031</span><span class="w">         </span><span class="mf">0.453967</span>
-
-<span class="w">   </span><span class="n">Color</span><span class="w"> </span><span class="n">intensity</span><span class="w">       </span><span class="n">Hue</span><span class="w">  </span><span class="n">OD280</span><span class="o">/</span><span class="n">OD315</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">diluted</span><span class="w"> </span><span class="n">wines</span><span class="w">   </span><span class="n">Proline</span><span class="w">  </span>
-<span class="mi">0</span><span class="w">         </span><span class="mf">0.251717</span><span class="w">  </span><span class="mf">0.362177</span><span class="w">                      </span><span class="mf">1.847920</span><span class="w">  </span><span class="mf">1.013009</span><span class="w">  </span>
-<span class="mi">1</span><span class="w">        </span><span class="o">-</span><span class="mf">0.293321</span><span class="w">  </span><span class="mf">0.406051</span><span class="w">                      </span><span class="mf">1.113449</span><span class="w">  </span><span class="mf">0.965242</span><span class="w">  </span>
-<span class="mi">2</span><span class="w">         </span><span class="mf">0.269020</span><span class="w">  </span><span class="mf">0.318304</span><span class="w">                      </span><span class="mf">0.788587</span><span class="w">  </span><span class="mf">1.395148</span><span class="w">  </span>
-<span class="mi">3</span><span class="w">         </span><span class="mf">1.186068</span><span class="w"> </span><span class="o">-</span><span class="mf">0.427544</span><span class="w">                      </span><span class="mf">1.184071</span><span class="w">  </span><span class="mf">2.334574</span><span class="w">  </span>
-<span class="mi">4</span><span class="w">        </span><span class="o">-</span><span class="mf">0.319276</span><span class="w">  </span><span class="mf">0.362177</span><span class="w">                      </span><span class="mf">0.449601</span><span class="w"> </span><span class="o">-</span><span class="mf">0.037874</span><span class="w">  </span>
-<span class="mi">5</span><span class="w">         </span><span class="mf">0.731870</span><span class="w">  </span><span class="mf">0.406051</span><span class="w">                      </span><span class="mf">0.336606</span><span class="w">  </span><span class="mf">2.239039</span><span class="w">  </span>
-<span class="mi">6</span><span class="w">         </span><span class="mf">0.083015</span><span class="w">  </span><span class="mf">0.274431</span><span class="w">                      </span><span class="mf">1.367689</span><span class="w">  </span><span class="mf">1.729520</span><span class="w">  </span>
-<span class="mi">7</span><span class="w">        </span><span class="o">-</span><span class="mf">0.003499</span><span class="w">  </span><span class="mf">0.449924</span><span class="w">                      </span><span class="mf">1.367689</span><span class="w">  </span><span class="mf">1.745442</span><span class="w">  </span>
-<span class="mi">8</span><span class="w">         </span><span class="mf">0.061386</span><span class="w">  </span><span class="mf">0.537671</span><span class="w">                      </span><span class="mf">0.336606</span><span class="w">  </span><span class="mf">0.949319</span><span class="w">  </span>
-<span class="mi">9</span><span class="w">         </span><span class="mf">0.935177</span><span class="w">  </span><span class="mf">0.230557</span><span class="w">                      </span><span class="mf">1.325316</span><span class="w">  </span><span class="mf">0.949319</span><span class="w">  </span>
-<span class="o">----------------------------</span>
-<span class="n">Estándar</span><span class="o">:</span>
-<span class="w">   </span><span class="n">Class</span><span class="w">   </span><span class="n">Alcohol</span><span class="w">  </span><span class="n">Malic</span><span class="w"> </span><span class="n">acid</span><span class="w">       </span><span class="n">Ash</span><span class="w">  </span><span class="n">Alcalinity</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">ash</span><span class="w">  </span><span class="n">Magnesium</span><span class="w">  </span><span class="o">\</span>
-<span class="mi">0</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.842105</span><span class="w">    </span><span class="mf">0.191700</span><span class="w">  </span><span class="mf">0.572193</span><span class="w">           </span><span class="mf">0.257732</span><span class="w">   </span><span class="mf">0.619565</span><span class="w">   </span>
-<span class="mi">1</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.571053</span><span class="w">    </span><span class="mf">0.205534</span><span class="w">  </span><span class="mf">0.417112</span><span class="w">           </span><span class="mf">0.030928</span><span class="w">   </span><span class="mf">0.326087</span><span class="w">   </span>
-<span class="mi">2</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.560526</span><span class="w">    </span><span class="mf">0.320158</span><span class="w">  </span><span class="mf">0.700535</span><span class="w">           </span><span class="mf">0.412371</span><span class="w">   </span><span class="mf">0.336957</span><span class="w">   </span>
-<span class="mi">3</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.878947</span><span class="w">    </span><span class="mf">0.239130</span><span class="w">  </span><span class="mf">0.609626</span><span class="w">           </span><span class="mf">0.319588</span><span class="w">   </span><span class="mf">0.467391</span><span class="w">   </span>
-<span class="mi">4</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.581579</span><span class="w">    </span><span class="mf">0.365613</span><span class="w">  </span><span class="mf">0.807487</span><span class="w">           </span><span class="mf">0.536082</span><span class="w">   </span><span class="mf">0.521739</span><span class="w">   </span>
-<span class="mi">5</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.834211</span><span class="w">    </span><span class="mf">0.201581</span><span class="w">  </span><span class="mf">0.582888</span><span class="w">           </span><span class="mf">0.237113</span><span class="w">   </span><span class="mf">0.456522</span><span class="w">   </span>
-<span class="mi">6</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.884211</span><span class="w">    </span><span class="mf">0.223320</span><span class="w">  </span><span class="mf">0.582888</span><span class="w">           </span><span class="mf">0.206186</span><span class="w">   </span><span class="mf">0.282609</span><span class="w">   </span>
-<span class="mi">7</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.797368</span><span class="w">    </span><span class="mf">0.278656</span><span class="w">  </span><span class="mf">0.668449</span><span class="w">           </span><span class="mf">0.360825</span><span class="w">   </span><span class="mf">0.554348</span><span class="w">   </span>
-<span class="mi">8</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">1.000000</span><span class="w">    </span><span class="mf">0.177866</span><span class="w">  </span><span class="mf">0.433155</span><span class="w">           </span><span class="mf">0.175258</span><span class="w">   </span><span class="mf">0.293478</span><span class="w">   </span>
-<span class="mi">9</span><span class="w">      </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.744737</span><span class="w">    </span><span class="mf">0.120553</span><span class="w">  </span><span class="mf">0.486631</span><span class="w">           </span><span class="mf">0.278351</span><span class="w">   </span><span class="mf">0.304348</span>
-
-<span class="w">   </span><span class="n">Total</span><span class="w"> </span><span class="n">phenols</span><span class="w">  </span><span class="n">Flavanoids</span><span class="w">  </span><span class="n">Nonflavanoid</span><span class="w"> </span><span class="n">phenols</span><span class="w">  </span><span class="n">Proanthocyanins</span><span class="w">  </span><span class="o">\</span>
-<span class="mi">0</span><span class="w">       </span><span class="mf">0.627586</span><span class="w">    </span><span class="mf">0.573840</span><span class="w">              </span><span class="mf">0.283019</span><span class="w">         </span><span class="mf">0.593060</span><span class="w">   </span>
-<span class="mi">1</span><span class="w">       </span><span class="mf">0.575862</span><span class="w">    </span><span class="mf">0.510549</span><span class="w">              </span><span class="mf">0.245283</span><span class="w">         </span><span class="mf">0.274448</span><span class="w">   </span>
-<span class="mi">2</span><span class="w">       </span><span class="mf">0.627586</span><span class="w">    </span><span class="mf">0.611814</span><span class="w">              </span><span class="mf">0.320755</span><span class="w">         </span><span class="mf">0.757098</span><span class="w">   </span>
-<span class="mi">3</span><span class="w">       </span><span class="mf">0.989655</span><span class="w">    </span><span class="mf">0.664557</span><span class="w">              </span><span class="mf">0.207547</span><span class="w">         </span><span class="mf">0.558360</span><span class="w">   </span>
-<span class="mi">4</span><span class="w">       </span><span class="mf">0.627586</span><span class="w">    </span><span class="mf">0.495781</span><span class="w">              </span><span class="mf">0.490566</span><span class="w">         </span><span class="mf">0.444795</span><span class="w">   </span>
-<span class="mi">5</span><span class="w">       </span><span class="mf">0.789655</span><span class="w">    </span><span class="mf">0.643460</span><span class="w">              </span><span class="mf">0.396226</span><span class="w">         </span><span class="mf">0.492114</span><span class="w">   </span>
-<span class="mi">6</span><span class="w">       </span><span class="mf">0.524138</span><span class="w">    </span><span class="mf">0.459916</span><span class="w">              </span><span class="mf">0.320755</span><span class="w">         </span><span class="mf">0.495268</span><span class="w">   </span>
-<span class="mi">7</span><span class="w">       </span><span class="mf">0.558621</span><span class="w">    </span><span class="mf">0.457806</span><span class="w">              </span><span class="mf">0.339623</span><span class="w">         </span><span class="mf">0.264984</span><span class="w">   </span>
-<span class="mi">8</span><span class="w">       </span><span class="mf">0.627586</span><span class="w">    </span><span class="mf">0.556962</span><span class="w">              </span><span class="mf">0.301887</span><span class="w">         </span><span class="mf">0.495268</span><span class="w">   </span>
-<span class="mi">9</span><span class="w">       </span><span class="mf">0.689655</span><span class="w">    </span><span class="mf">0.592827</span><span class="w">              </span><span class="mf">0.169811</span><span class="w">         </span><span class="mf">0.454259</span>
-
-<span class="w">   </span><span class="n">Color</span><span class="w"> </span><span class="n">intensity</span><span class="w">       </span><span class="n">Hue</span><span class="w">  </span><span class="n">OD280</span><span class="o">/</span><span class="n">OD315</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">diluted</span><span class="w"> </span><span class="n">wines</span><span class="w">   </span><span class="n">Proline</span><span class="w">  </span>
-<span class="mi">0</span><span class="w">         </span><span class="mf">0.372014</span><span class="w">  </span><span class="mf">0.455285</span><span class="w">                      </span><span class="mf">0.970696</span><span class="w">  </span><span class="mf">0.561341</span><span class="w">  </span>
-<span class="mi">1</span><span class="w">         </span><span class="mf">0.264505</span><span class="w">  </span><span class="mf">0.463415</span><span class="w">                      </span><span class="mf">0.780220</span><span class="w">  </span><span class="mf">0.550642</span><span class="w">  </span>
-<span class="mi">2</span><span class="w">         </span><span class="mf">0.375427</span><span class="w">  </span><span class="mf">0.447154</span><span class="w">                      </span><span class="mf">0.695971</span><span class="w">  </span><span class="mf">0.646933</span><span class="w">  </span>
-<span class="mi">3</span><span class="w">         </span><span class="mf">0.556314</span><span class="w">  </span><span class="mf">0.308943</span><span class="w">                      </span><span class="mf">0.798535</span><span class="w">  </span><span class="mf">0.857347</span><span class="w">  </span>
-<span class="mi">4</span><span class="w">         </span><span class="mf">0.259386</span><span class="w">  </span><span class="mf">0.455285</span><span class="w">                      </span><span class="mf">0.608059</span><span class="w">  </span><span class="mf">0.325963</span><span class="w">  </span>
-<span class="mi">5</span><span class="w">         </span><span class="mf">0.466724</span><span class="w">  </span><span class="mf">0.463415</span><span class="w">                      </span><span class="mf">0.578755</span><span class="w">  </span><span class="mf">0.835949</span><span class="w">  </span>
-<span class="mi">6</span><span class="w">         </span><span class="mf">0.338737</span><span class="w">  </span><span class="mf">0.439024</span><span class="w">                      </span><span class="mf">0.846154</span><span class="w">  </span><span class="mf">0.721826</span><span class="w">  </span>
-<span class="mi">7</span><span class="w">         </span><span class="mf">0.321672</span><span class="w">  </span><span class="mf">0.471545</span><span class="w">                      </span><span class="mf">0.846154</span><span class="w">  </span><span class="mf">0.725392</span><span class="w">  </span>
-<span class="mi">8</span><span class="w">         </span><span class="mf">0.334471</span><span class="w">  </span><span class="mf">0.487805</span><span class="w">                      </span><span class="mf">0.578755</span><span class="w">  </span><span class="mf">0.547076</span><span class="w">  </span>
-<span class="mi">9</span><span class="w">         </span><span class="mf">0.506826</span><span class="w">  </span><span class="mf">0.430894</span><span class="w">                      </span><span class="mf">0.835165</span><span class="w">  </span><span class="mf">0.547076</span>
-</code></pre></div>
-
-<p><em>Para separar los datos en grupos de datos para entrenar o testear de manera estratificada según la Class, podemos usar scikit:</em></p>
-<div class="codehilite"><pre><span></span><code><span class="n">wineTrain</span><span class="p">,</span> <span class="n">wineTest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">wine</span><span class="p">,</span><span class="n">stratify</span><span class="o">=</span><span class="n">wine</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">wineTest</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>           Class    Alcohol  Malic acid        Ash  Alcalinity of ash  \
-count  54.000000  54.000000   54.000000  54.000000          54.000000   
-mean    1.944444  12.927222    2.286481   2.328148          19.253704   
-std     0.787081   0.820617    1.009282   0.253504           3.003439   
-min     1.000000  11.030000    0.980000   1.750000          11.400000   
-25%     1.000000  12.337500    1.635000   2.200000          17.425000   
-50%     2.000000  12.945000    1.865000   2.310000          19.500000   
-75%     3.000000  13.505000    2.975000   2.457500          21.000000   
-max     3.000000  14.750000    4.950000   2.870000          26.500000
-
-        Magnesium  Total phenols  Flavanoids  Nonflavanoid phenols  \
-count   54.000000      54.000000   54.000000             54.000000   
-mean    99.185185       2.250370    1.952778              0.377222   
-std     14.849019       0.582765    0.967762              0.130245   
-min     78.000000       1.100000    0.480000              0.130000   
-25%     88.000000       1.812500    0.975000              0.282500   
-50%     95.000000       2.210000    2.020000              0.370000   
-75%    108.000000       2.675000    2.742500              0.477500   
-max    151.000000       3.850000    3.690000              0.660000
-
-       Proanthocyanins  Color intensity        Hue  \
-count        54.000000        54.000000  54.000000   
-mean          1.641481         5.009259   0.937519   
-std           0.582802         2.394423   0.229923   
-min           0.640000         1.280000   0.560000   
-25%           1.350000         2.862500   0.755000   
-50%           1.585000         4.800000   0.925000   
-75%           1.892500         6.200000   1.070000   
-max           3.580000        10.520000   1.710000
-
-       OD280/OD315 of diluted wines      Proline  
-count                     54.000000    54.000000  
-mean                       2.589259   753.629630  
-std                        0.647724   335.677816  
-min                        1.330000   312.000000  
-25%                        1.942500   487.500000  
-50%                        2.775000   675.000000  
-75%                        3.092500  1050.000000  
-max                        3.580000  1480.000000
-</code></pre></div>                </article>
+<p><img alt="Pelican" src="../../images/ut3_ta7_files/ta7_17_1.png"></p>
+<h1 id="conclusiones">Conclusiones</h1>
+<ul>
+<li>La librería SKLearn es muy buena para la fácil definición de modelos  </li>
+<li>Nos permite fácilmente sacar reportes claros de desempeño  </li>
+<li>En un conjunto de datos pequeños, también se pueden sacar buenos resultados, mientras las separación de las clases sea suficiente.</li>
+</ul>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <hr />
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/algoritmo-regresion-logistica.html" rel="bookmark"
+                           title="Permalink to Algoritmo Regresión Logística">Algoritmo Regresión Logística</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-25T00:00:00-03:00">
+                Published: lun. 25 Setiembre 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
+        </address>
+<p>In <a href="/category/algoritmos-machine-learning.html">Algoritmos Machine Learning</a>.</p>
+
+</footer><!-- /.post-info -->                <h1 id="regresion-logistica-en-python">Regresión Logística en Python</h1>
+<p>En el presente documento ejemplificaremos y revisaremos la aplicación de los algoritmos de regresión para la predicción de valores.<br>
+Utilizaremos los siguientes datos que buscan predecir la probabilidad de un segundo ataque de corazón en pacientes según datos como edad, sexo, colesterol entre otros. <br>
+Primero importaremos …</p>
+                <a class="readmore" href="/algoritmo-regresion-logistica.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/investigacion-caso-academia-de-deportistas.html" rel="bookmark"
+                           title="Permalink to Investigación Caso: Academia de Deportistas">Investigación Caso: Academia de Deportistas</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-25T00:00:00-03:00">
+                Published: lun. 25 Setiembre 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
+        </address>
+<p>In <a href="/category/investigacion-y-analisis.html">Investigación y Análisis</a>.</p>
+
+</footer><!-- /.post-info -->                <h1 id="clasificacion-por-lda-en-python-caso-clasificacion-deportistas">Clasificación por LDA en python: Caso Clasificación Deportistas</h1>
+<h2 id="contexto">Contexto</h2>
+<p>El “Maestro”, convencido de su capacidad para vislumbrar estrellas deportivas, ha puesto una
+academia para ayudar a jóvenes deportistas a lograr su mayor desempeño. En esta academia, el
+Maestro se enfoca particularmente en cuatro deportes: Fútbol, Basketball, Voleibol y Rugby.
+Si …</p>
+                <a class="readmore" href="/investigacion-caso-academia-de-deportistas.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/investigacion-caso-marketing-banco-portugues.html" rel="bookmark"
+                           title="Permalink to Investigación Caso: Marketing Banco Portugués">Investigación Caso: Marketing Banco Portugués</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-25T00:00:00-03:00">
+                Published: lun. 25 Setiembre 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
+        </address>
+<p>In <a href="/category/investigacion-y-analisis.html">Investigación y Análisis</a>.</p>
+
+</footer><!-- /.post-info -->                <p>En el presente trabajo revisaremos y desarrollaremos el caso propuesto en el dataset Bank Marketing de UCI, que se puede hallar <a href="https://archive.ics.uci.edu/dataset/222/bank+marketing">aquí</a></p>
+<h2 id="introduccion-al-caso">Introducción al Caso</h2>
+<h3 id="contexto">Contexto</h3>
+<p>Una institución bancaria de Portugal registra el desempeño de una campaña de marketing por teléfono, donde se registra la información del cliente, su experiencia …</p>
+                <a class="readmore" href="/investigacion-caso-marketing-banco-portugues.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/intro-a-sklearn.html" rel="bookmark"
+                           title="Permalink to Intro a Sklearn">Intro a Sklearn</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-08-30T00:00:00-03:00">
+                Published: mié. 30 Agosto 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
+        </address>
+<p>In <a href="/category/intro.html">Intro</a>.</p>
+
+</footer><!-- /.post-info -->                <h2 id="en-este-ejercicio-se-practicara-pre-procesamiento-de-datos-y-recuperado-por-python">En este ejercicio se practicará pre procesamiento de datos y recuperado por python</h2>
+<ol>
+<li>Descargar el dataset “wine” del repositorio UCI y cargar el dataset en formato CSV.</li>
+<li>Imprimir todas las columnas de las primeras 10 filas.</li>
+<li>Convertir los valores numéricos en string a float, en caso de ser necesario</li>
+<li>Obtener …</li></ol>
+                <a class="readmore" href="/intro-a-sklearn.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

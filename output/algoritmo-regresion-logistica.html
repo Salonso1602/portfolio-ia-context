@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="spanish">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Algoritmo Regresión Logística</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Regresión Logística en Python En el presente documento ejemplificaremos y revisaremos la aplicación de los algoritmos de regresión para la..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Portfolio de Intro a Aprendizaje Automático</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/algoritmos-machine-learning.html">Algoritmos Machine Learning</a></li>
+                    <li><a href="/category/home.html">Home</a></li>
+                    <li><a href="/category/intro.html">Intro</a></li>
+                    <li><a href="/category/investigacion-y-analisis.html">Investigación y Análisis</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/algoritmo-regresion-logistica.html" rel="bookmark"
+           title="Permalink to Algoritmo Regresión Logística">Algoritmo Regresión Logística</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-25T00:00:00-03:00">
+                Published: lun. 25 Setiembre 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/salonso1602.html">salonso1602</a>
+        </address>
+<p>In <a href="/category/algoritmos-machine-learning.html">Algoritmos Machine Learning</a>.</p>
+
+</footer><!-- /.post-info -->      <h1 id="regresion-logistica-en-python">Regresión Logística en Python</h1>
+<p>En el presente documento ejemplificaremos y revisaremos la aplicación de los algoritmos de regresión para la predicción de valores.<br>
+Utilizaremos los siguientes datos que buscan predecir la probabilidad de un segundo ataque de corazón en pacientes según datos como edad, sexo, colesterol entre otros. <br>
+Primero importaremos las librerías necesarias y los datos:    </p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">input_file</span> <span class="o">=</span> <span class="s2">&quot;./../data/cardiac-training.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Edad</th>
+      <th>Estado_civil</th>
+      <th>Sexo</th>
+      <th>Categoria_Peso</th>
+      <th>Colesterol</th>
+      <th>Manejo_stress</th>
+      <th>Trat_ansiedad</th>
+      <th>2do_Ataque_Corazon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>150</td>
+      <td>1</td>
+      <td>50</td>
+      <td>Si</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>69</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>170</td>
+      <td>0</td>
+      <td>60</td>
+      <td>Si</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>52</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>174</td>
+      <td>1</td>
+      <td>35</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>66</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>169</td>
+      <td>0</td>
+      <td>60</td>
+      <td>Si</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>70</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>237</td>
+      <td>0</td>
+      <td>65</td>
+      <td>Si</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><em>Separamos entre entradas y salidas</em></p>
+<div class="codehilite"><pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">&#39;2do_Ataque_Corazon&#39;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;2do_Ataque_Corazon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="w">     </span><span class="nx">Edad</span><span class="w">  </span><span class="nx">Estado_civil</span><span class="w">  </span><span class="nx">Sexo</span><span class="w">  </span><span class="nx">Categoria_Peso</span><span class="w">  </span><span class="nx">Colesterol</span><span class="w">  </span><span class="nx">Manejo_stress</span><span class="w">  </span>\
+<span class="w"> </span><span class="mi">0</span><span class="w">      </span><span class="mi">60</span><span class="w">             </span><span class="mi">2</span><span class="w">     </span><span class="mi">0</span><span class="w">               </span><span class="mi">1</span><span class="w">         </span><span class="mi">150</span><span class="w">              </span><span class="mi">1</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">1</span><span class="w">      </span><span class="mi">69</span><span class="w">             </span><span class="mi">2</span><span class="w">     </span><span class="mi">1</span><span class="w">               </span><span class="mi">1</span><span class="w">         </span><span class="mi">170</span><span class="w">              </span><span class="mi">0</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">2</span><span class="w">      </span><span class="mi">52</span><span class="w">             </span><span class="mi">1</span><span class="w">     </span><span class="mi">0</span><span class="w">               </span><span class="mi">0</span><span class="w">         </span><span class="mi">174</span><span class="w">              </span><span class="mi">1</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">3</span><span class="w">      </span><span class="mi">66</span><span class="w">             </span><span class="mi">2</span><span class="w">     </span><span class="mi">1</span><span class="w">               </span><span class="mi">1</span><span class="w">         </span><span class="mi">169</span><span class="w">              </span><span class="mi">0</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">4</span><span class="w">      </span><span class="mi">70</span><span class="w">             </span><span class="mi">3</span><span class="w">     </span><span class="mi">0</span><span class="w">               </span><span class="mi">1</span><span class="w">         </span><span class="mi">237</span><span class="w">              </span><span class="mi">0</span><span class="w">   </span>
+<span class="w"> </span><span class="p">..</span><span class="w">    </span><span class="o">...</span><span class="w">           </span><span class="o">...</span><span class="w">   </span><span class="o">...</span><span class="w">             </span><span class="o">...</span><span class="w">         </span><span class="o">...</span><span class="w">            </span><span class="o">...</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">133</span><span class="w">    </span><span class="mi">54</span><span class="w">             </span><span class="mi">1</span><span class="w">     </span><span class="mi">0</span><span class="w">               </span><span class="mi">0</span><span class="w">         </span><span class="mi">170</span><span class="w">              </span><span class="mi">1</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">134</span><span class="w">    </span><span class="mi">59</span><span class="w">             </span><span class="mi">1</span><span class="w">     </span><span class="mi">0</span><span class="w">               </span><span class="mi">0</span><span class="w">         </span><span class="mi">172</span><span class="w">              </span><span class="mi">0</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">135</span><span class="w">    </span><span class="mi">55</span><span class="w">             </span><span class="mi">3</span><span class="w">     </span><span class="mi">0</span><span class="w">               </span><span class="mi">0</span><span class="w">         </span><span class="mi">122</span><span class="w">              </span><span class="mi">1</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">136</span><span class="w">    </span><span class="mi">73</span><span class="w">             </span><span class="mi">2</span><span class="w">     </span><span class="mi">1</span><span class="w">               </span><span class="mi">1</span><span class="w">         </span><span class="mi">236</span><span class="w">              </span><span class="mi">0</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">137</span><span class="w">    </span><span class="mi">62</span><span class="w">             </span><span class="mi">3</span><span class="w">     </span><span class="mi">0</span><span class="w">               </span><span class="mi">0</span><span class="w">         </span><span class="mi">185</span><span class="w">              </span><span class="mi">1</span>
+
+<span class="w">      </span><span class="nx">Trat_ansiedad</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">0</span><span class="w">               </span><span class="mi">50</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">1</span><span class="w">               </span><span class="mi">60</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">2</span><span class="w">               </span><span class="mi">35</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">3</span><span class="w">               </span><span class="mi">60</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">4</span><span class="w">               </span><span class="mi">65</span><span class="w">  </span>
+<span class="w"> </span><span class="p">..</span><span class="w">             </span><span class="o">...</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">133</span><span class="w">             </span><span class="mi">35</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">134</span><span class="w">             </span><span class="mi">60</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">135</span><span class="w">             </span><span class="mi">45</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">136</span><span class="w">             </span><span class="mi">60</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">137</span><span class="w">             </span><span class="mi">65</span>
+
+<span class="w"> </span><span class="p">[</span><span class="mi">138</span><span class="w"> </span><span class="nx">rows</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="nx">columns</span><span class="p">],</span>
+<span class="w"> </span><span class="nx">array</span><span class="p">([</span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Si</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">No</span><span class="err">&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">dtype</span><span class="p">=</span><span class="nx">object</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Formaremos datos de entrenamiento y datos de prueba</p>
+<div class="codehilite"><pre><span></span><code><span class="n">train_X</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span>
+<span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Con esto pasamos a la construcción del modelo de Regresión Logística de sklearn y su entrenamiento</p>
+<div class="codehilite"><pre><span></span><code><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span> <span class="o">=</span> <span class="s1">&#39;l2&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;liblinear&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+</code></pre></div>
+
+<p>El modelo de Sklearn nos permite especificar varios aspectos del modelo que buscamos construir:<br>
+- Penalty: nos deja especificar que regularización queremos utilizar, entre L1, L2, elasticnet o ninguno.<br>
+- max_iter: la cantidad de iteraciones que permite a los resolventes a converger.<br>
+- solver: resolvente o método para hallar los coeficientes del modelo, entre LBFGS, liblinear, newton-cg, SAG, newton-cholesky o saga.  </p>
+<p>Estas configuraciones nos permiten especificar el modelo a nuestra necesidad puntual, ajustarlo a medida de pruebas y obtener el mejor resultado.  </p>
+<p>Aplicamos el modelo y evaluamos</p>
+<div class="codehilite"><pre><span></span><code><span class="n">y_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted vs Expected&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Predicted vs Expected
+              precision    recall  f1-score   support
+
+          No      0.941     0.842     0.889        19
+          Si      0.880     0.957     0.917        23
+
+    accuracy                          0.905        42
+   macro avg      0.911     0.899     0.903        42
+weighted avg      0.908     0.905     0.904        42
+
+---------------------------------------------------------------------------------
+&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay object at 0x0000016DFA1EAFE0&gt;
+</code></pre></div>
+
+<p><img alt="Pelican" src="../../images/ut3_ta4_files/ta4_12_1.png"></p>
+<p>Sklearn nos permite fácilmente entrenar el modelo y aplicarlo y obtener métricas y visualizaciones del performance del modelo.<br>
+En el primer retorno podemos resaltar una precisión general del modelo de un 90,5% en general para las clases, siendo un poco mejor prediciendo gente que no sufrirá un segundo ataque (un ~94%) que las clases de que sí lo pueden llegar a sufrir (un ~88%).<br>
+Segundo podemos ver representado la matriz de confusión, que nos permite ver claramente los resultados comparados con la realidad, denotando falsos positivos, falsos negativos y aciertos. Por ejemplo vemos que se predijeron 3 falsos positivos y 1 solo falso negativo.   </p>
+<h2 id="comparacion-con-resultados-en-rapidminer">Comparación con resultados en RapidMiner</h2>
+<p>A modo de investigación, comparamos resultados del modelo entrenado en Sklearn con una aplicación equivalente en RapidMiner</p>
+<p><img alt="Pelican" src="../../images/ut3_ta4_files/image-1.png"><img alt="Pelican" src="../../images/ut3_ta4_files/image-2.png"><img alt="Pelican" src="../../images/ut3_ta4_files/image-3.png"></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://archive.ics.uci.edu/datasets">UCI Datasets</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://rapidminer.com/">RapidMiner</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/Salonso1602">Github</a></li>
+                            <li><a href="https://www.linkedin.com/in/santiago-rafael-alonso-mendez-374106218/">LinkedIn</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
