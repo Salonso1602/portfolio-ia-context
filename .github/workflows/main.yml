@@ -20,6 +20,15 @@ jobs:
         DEST_REPO_URL=https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
         FOLDER_PATH=./output
 
+        git config user.name "Santiago Alonso"
+        git config user.email santiago.ralonso@correo.ucu.edu.uy
+        git config user.username "${{ secrets.PAT }}"
+        git config user.password "${{ secrets.PAT }}"
+        git config --global credential.helper ""
+        
+        git config credential.username "${{ secrets.PAT }}"
+        git config credential.password "${{ secrets.PAT }}"
+
         # Clona el repositorio de destino
         git clone $DEST_REPO_URL copy-repo
         
