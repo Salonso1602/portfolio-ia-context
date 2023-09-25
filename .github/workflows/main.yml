@@ -13,6 +13,16 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Remove Existing Remote Origin
+      run: git remote remove origin
+      # Esto eliminará cualquier configuración remota llamada "origin" que ya exista en el repositorio clonado.
+
+    - name: Add Remote Origin
+      run: 
+        git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/portfolio-ia-context.git
+        git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
+      # Agrega la configuración remota "origin" con las credenciales adecuadas.
+
     - name: Copy Changes to Another Repository
       run: |
         # Configura las variables
@@ -23,8 +33,6 @@ jobs:
         git config user.name "Santiago Alonso"
         git config user.email santiago.ralonso@correo.ucu.edu.uy
 
-        git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/portfolio-ia-context.git
-        git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
         
         git config credential.username "${{ secrets.PAT }}"
         git config credential.password "${{ secrets.PAT }}"
