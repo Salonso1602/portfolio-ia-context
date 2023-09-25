@@ -16,8 +16,8 @@ jobs:
     - name: Copy Changes to Another Repository
       run: |
         # Configura las variables
-        SOURCE_REPO_URL=https://github.com/Salonso1602/portfolio-ia-context.git
-        DEST_REPO_URL=https://github.com/Salonso1602/salonso1602.github.io.git
+        SOURCE_REPO_URL=https://username:${{ secrets.PAT }}@github.com/Salonso1602/portfolio-ia-context.git
+        DEST_REPO_URL=https://username:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
         FOLDER_PATH=./output
 
         # Clona el repositorio de destino
