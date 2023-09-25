@@ -19,7 +19,6 @@ jobs:
 
     - name: Add Remote Origin
       run:  |
-        git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/portfolio-ia-context.git
         git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
       # Agrega la configuración remota "origin" con las credenciales adecuadas.
 
