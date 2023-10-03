@@ -378,7 +378,7 @@ sns.distplot(copy["Age"])
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_14_1.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_14_1.png)
     
 
 
@@ -405,7 +405,7 @@ sns.distplot(copy["Age"])
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_16_1.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_16_1.png)
     
 
 
@@ -433,7 +433,7 @@ print(total_survived_males/(total_survived_females + total_survived_males))
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_19_0.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_19_0.png)
     
 
 
@@ -470,7 +470,7 @@ print(total_survived_three/total_survived_class)
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_21_0.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_21_0.png)
     
 
 
@@ -499,7 +499,7 @@ plt.title("Survival Rates Based on Gender and Class")
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_22_1.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_22_1.png)
     
 
 
@@ -519,7 +519,7 @@ plt.title("Survival Rates Based on Gender and Class")
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_23_1.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_23_1.png)
     
 
 
@@ -544,7 +544,7 @@ plt.show()
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_25_0.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_25_0.png)
     
 
 
@@ -562,7 +562,7 @@ sns.stripplot(x="Survived", y="Age", data=trainingData, jitter=True)
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_26_1.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_26_1.png)
     
 
 
@@ -584,7 +584,7 @@ sns.pairplot(trainingData)
 
 
     
-![png](ut2_pd4_ej1_files/ut2_pd4_ej1_29_1.png)
+![Pelican](../../images/ut2_pd4_ej1_files/ut2_pd4_ej1_29_1.png)
     
 
 
