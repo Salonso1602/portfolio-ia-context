@@ -1,57 +1,58 @@
-name: Copy Changes
-
-on:
-  push:
-    branches:
-      - main # Cambia esto al nombre de tu rama principal
-
-jobs:
-  copy-changes:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Remove Existing Remote Origin
-      run: git remote remove origin
-      # Esto eliminará cualquier configuración remota llamada "origin" que ya exista en el repositorio clonado.
-
-    - name: Add Remote Origin
-      run:  |
-        git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
-      # Agrega la configuración remota "origin" con las credenciales adecuadas.
-
-    - name: Copy Changes to Another Repository
-      run: |
-        # Configura las variables
-        SOURCE_REPO_URL=https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/portfolio-ia-context.git
-        DEST_REPO_URL=https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
-        FOLDER_PATH=./output
-
-        git config user.name "Santiago Alonso"
-        git config user.email santiago.ralonso@correo.ucu.edu.uy
-
-        
-        git config credential.username "${{ secrets.PAT }}"
-        git config credential.password "${{ secrets.PAT }}"
-
-        # Clona el repositorio de destino
-        git clone $DEST_REPO_URL copy-repo
-        
-        # Copia los cambios de la carpeta específica al repositorio de destino
-        rsync -av $FOLDER_PATH/ copy-repo/
-
-        # Realiza el commit y el push de los cambios
-        cd copy-repo
-
-        git config --global user.email "santiago.ralonso@correo.ucu.edu.uy"
-        git config --global user.name "Santiago Alonso"
-        
-        git add .
-        git commit -m "Copiar cambios desde $SOURCE_REPO_URL"
-        git push origin main
-
-    env:
-      GIT_SSH: ${{ secrets.GITHUB_TOKEN }}
-      PAT: ${{ secrets.PAT }}
+# name: Copy Changes
+# 
+# on:
+#   push:
+#     branches:
+#       - main # Cambia esto al nombre de tu rama principal
+# 
+# jobs:
+#   copy-changes:
+#     runs-on: ubuntu-latest
+# 
+#     steps:
+#     - name: Checkout Repository
+#       uses: actions/checkout@v2
+# 
+#     - name: Remove Existing Remote Origin
+#       run: git remote remove origin
+#       # Esto eliminará cualquier configuración remota llamada "origin" que ya exista en el repositorio clonado.
+# 
+#     - name: Add Remote Origin
+#       run:  |
+#         git remote add origin https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
+#       # Agrega la configuración remota "origin" con las credenciales adecuadas.
+# 
+#     - name: Copy Changes to Another Repository
+#       run: |
+#         # Configura las variables
+#         SOURCE_REPO_URL=https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/portfolio-ia-context.git
+#         DEST_REPO_URL=https://Salonso1602:${{ secrets.PAT }}@github.com/Salonso1602/salonso1602.github.io.git
+#         FOLDER_PATH=./output
+# 
+#         git config user.name "Santiago Alonso"
+#         git config user.email santiago.ralonso@correo.ucu.edu.uy
+# 
+#         
+#         git config credential.username "${{ secrets.PAT }}"
+#         git config credential.password "${{ secrets.PAT }}"
+# 
+#         # Clona el repositorio de destino
+#         git clone $DEST_REPO_URL copy-repo
+#         
+#         # Copia los cambios de la carpeta específica al repositorio de destino
+#         rsync -av $FOLDER_PATH/ copy-repo/
+# 
+#         # Realiza el commit y el push de los cambios
+#         cd copy-repo
+# 
+#         git config --global user.email "santiago.ralonso@correo.ucu.edu.uy"
+#         git config --global user.name "Santiago Alonso"
+#         
+#         git add .
+#         git commit -m "Copiar cambios desde $SOURCE_REPO_URL"
+#         git push origin main
+# 
+#     env:
+#       GIT_SSH: ${{ secrets.GITHUB_TOKEN }}
+#       PAT: ${{ secrets.PAT }}
+# 
