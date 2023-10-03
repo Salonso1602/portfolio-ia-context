@@ -1,9 +1,8 @@
 Title: Intro Machine Learning
 Date: 2023-08-15
-Category: Intro
+Category: 1. Introducciones
 
 
-# UT1 PD1 Introducción a Machine Learning  
 ## ¿Qué es “Machine Learning”?
 *Hacer una búsqueda rápida y listar al menos 3 definiciones de “Machine Learning” y
 responder:*

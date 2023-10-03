@@ -1,8 +1,7 @@
 Title: Algoritmo Linear Discriminant Analysis
 Date: 2023-09-25
-Category: Algoritmos Machine Learning
+Category: 3. Algoritmos Machine Learning
 
-# Clasificación por LDA en python  
 Análisis Discriminante Lineal es un algoritmo de machine learning que nos permite la clasificación multi-clase de datos, permitiendo la predicción de campos polinomiales.  
 En el presente trabajo demostraremos un proceso básico de este algoritmo en Python con SciKit Learn.  
 

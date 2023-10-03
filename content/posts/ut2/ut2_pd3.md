@@ -1,6 +1,6 @@
 Title: Intro a Sklearn
 Date: 2023-08-30
-Category: Intro
+Category: 1. Introducciones
 
 ## En este ejercicio se practicará pre procesamiento de datos y recuperado por python
 1. Descargar el dataset “wine” del repositorio UCI y cargar el dataset en formato CSV.

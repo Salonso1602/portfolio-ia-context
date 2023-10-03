@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="spanish">
 <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="generator" content="Pelican" />
+
         <title>Evaluación de Set "Wine"</title>
-        <link rel="stylesheet" href="https://salonso1602.github.io/theme/css/main.css" />
-        <meta name="description" content="Wine Dataset: Investigación de set Este set contiene 14 variables químicas de vino hechos en una región de Italia, pero de 3 viñedos diferentes...." />
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="https://salonso1602.github.io/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="https://salonso1602.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://salonso1602.github.io/theme/pygment.css" />
+
+        <script src="https://salonso1602.github.io/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
 </head>
 
 <body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://salonso1602.github.io/">Portfolio de Intro a Aprendizaje Automático</a></h1>
-                <nav><ul>
-                    <li><a href="https://salonso1602.github.io/category/algoritmos-machine-learning.html">Algoritmos Machine Learning</a></li>
-                    <li><a href="https://salonso1602.github.io/category/home.html">Home</a></li>
-                    <li><a href="https://salonso1602.github.io/category/intro.html">Intro</a></li>
-                    <li class="active"><a href="https://salonso1602.github.io/category/investigacion-y-analisis.html">Investigación y Análisis</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="https://salonso1602.github.io/">Portfolio de Intro a Aprendizaje Automático <strong>por Rafael Alonso</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="https://salonso1602.github.io/">Home</a></li>
+
+                  <li><a href="https://salonso1602.github.io/category/1-introducciones.html">1. Introducciones</a></li>
+                  <li class="active"><a href="https://salonso1602.github.io/category/2-investigacion-y-analisis.html">2. Investigación y Análisis</a></li>
+                  <li><a href="https://salonso1602.github.io/category/3-algoritmos-machine-learning.html">3. Algoritmos Machine Learning</a></li>
+
+              </ul>
+            </div>
+
 <section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="https://salonso1602.github.io/evaluacion-de-set-wine.html" rel="bookmark"
-           title="Permalink to Evaluación de Set "Wine"">Evaluación de Set "Wine"</a></h1>
-    </header>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-08-22T00:00:00-03:00">
-                Published: mar. 22 Agosto 2023
-        </abbr>
+   <div class="row">
+        <div class="eleven columns">
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://salonso1602.github.io/author/salonso1602.html">salonso1602</a>
-        </address>
-<p>In <a href="https://salonso1602.github.io/category/investigacion-y-analisis.html">Investigación y Análisis</a>.</p>
 
-</footer><!-- /.post-info -->      <h1 id="wine-dataset-investigacion-de-set">Wine Dataset: Investigación de set</h1>
-<p>Este set contiene 14 variables químicas de vino hechos en una región de Italia, pero de 3 viñedos diferentes. Es un set bastante limpio sin datos faltantes.<br>
+            <header>
+              <h2 class="entry-title">
+                <a href="https://salonso1602.github.io/evaluacion-de-set-wine.html" rel="bookmark"
+                   title="Permalink to Evaluación de Set "Wine"">Evaluación de Set "Wine"</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2023-08-22T00:00:00-03:00">
+                mar. 22 Agosto 2023
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="https://salonso1602.github.io/author/salonso1602.html"> salonso1602</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>Este set contiene 14 variables químicas de vino hechos en una región de Italia, pero de 3 viñedos diferentes. Es un set bastante limpio sin datos faltantes.<br>
 No presenta un problema como tal, sino que provee datos que nos permiten encontrar estructuras y consistencias entre los vinos de cada viñedo, presentando un claro problema de clasificación, donde a partir de cualidades podemos tratar de inferir a que viñedo pertenecería.  </p>
 <h2 id="atributos">Atributos</h2>
 <table>
@@ -139,36 +165,76 @@ No presenta un problema como tal, sino que provee datos que nos permiten encontr
 <h2 id="conclusiones">Conclusiones</h2>
 <p>Se denota una mayor precisión de clasificación en los datos que nos normalizados previamente a entrenar al modelo, una diferencia considerable (aproximadamente 10%).<br>
 Esto se puede deber a que el modelo entrenarse con datos distribuidos en rangos similares, logra encontrar estructuras específicas mejor, por lo que es mejor clasificando, mientras que datos con rangos muy diferentes le es más difícil inferir características específicas.  </p>
-    </div><!-- /.entry-content -->
+            </div><!-- /.entry-content -->
 
-  </article>
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  </ul>
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="https://salonso1602.github.io/category/1-introducciones.html">1. Introducciones</a></li>
+    <li><a href="https://salonso1602.github.io/category/2-investigacion-y-analisis.html">2. Investigación y Análisis</a></li>
+    <li><a href="https://salonso1602.github.io/category/3-algoritmos-machine-learning.html">3. Algoritmos Machine Learning</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="https://github.com/Salonso1602">Github</a></li>
+    <li><a href="https://www.linkedin.com/in/santiago-rafael-alonso-mendez-374106218/">LinkedIn</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
 </section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://archive.ics.uci.edu/datasets">UCI Datasets</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://rapidminer.com/">RapidMiner</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
 
-                            <li><a href="https://github.com/Salonso1602">Github</a></li>
-                            <li><a href="https://www.linkedin.com/in/santiago-rafael-alonso-mendez-374106218/">LinkedIn</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+       </div><!-- /.row -->
+    </div><!-- /.container -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
 
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+       <div class="container.nopad bg">
 
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/Salonso1602" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="https://salonso1602.github.io/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="https://salonso1602.github.io/theme/js/libs/gumby.min.js"></script>
+  <script src="https://salonso1602.github.io/theme/js/plugins.js"></script>
 </body>
 </html>

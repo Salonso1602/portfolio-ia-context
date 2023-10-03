@@ -1,8 +1,7 @@
 Title: Algoritmo Regresión Logística
 Date: 2023-09-25
-Category: Algoritmos Machine Learning
+Category: 3. Algoritmos Machine Learning
 
-# Regresión Logística en Python
 
 En el presente documento ejemplificaremos y revisaremos la aplicación de los algoritmos de regresión para la predicción de valores.  
 Utilizaremos los siguientes datos que buscan predecir la probabilidad de un segundo ataque de corazón en pacientes según datos como edad, sexo, colesterol entre otros.   

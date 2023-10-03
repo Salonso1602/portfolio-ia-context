@@ -1,6 +1,6 @@
 Title: Intro a Pandas
 Date: 2023-08-22
-Category: Intro
+Category: 1. Introducciones
 
 
 Importamos librerias y datos de UCI

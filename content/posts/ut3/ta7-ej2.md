@@ -1,8 +1,6 @@
 Title: Investigación Caso: Academia de Deportistas
 Date: 2023-09-25
-Category: Investigación y Análisis
-
-# Clasificación por LDA en python: Caso Clasificación Deportistas  
+Category: 2. Investigación y Análisis
 
 ## Contexto  
 El “Maestro”, convencido de su capacidad para vislumbrar estrellas deportivas, ha puesto una

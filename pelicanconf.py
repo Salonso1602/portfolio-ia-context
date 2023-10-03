@@ -27,7 +27,7 @@ SOCIAL = (('Github', 'https://github.com/Salonso1602'),
 
 DEFAULT_PAGINATION = 10
 
-DEFAULT_CATEGORY = 'Home'
+DEFAULT_CATEGORY = '1. Home'
 
 PAGE_PATHS = ['pages']
 
@@ -39,6 +39,20 @@ MARKDOWN = {
     },
     'output_format': 'html5',
 }
+
+NEWEST_FIRST_ARCHIVES = False
+ARTICLE_ORDER_BY = 'date'
+DISPLAY_CATEGORIES_ON_MENU = True
+DISPLAY_PAGES_ON_MENU = False
+
+THEME = "themes\gum"
+
+SITESUBTITLE = 'por Rafael Alonso'
+
+GITHUB_URL = 'https://github.com/Salonso1602'
+TWITTER_URL = ''
+FACEBOOK_URL = ''
+GOOGLEPLUS_URL = ''
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True

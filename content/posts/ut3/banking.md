@@ -1,6 +1,6 @@
 Title: Investigación Caso: Marketing Banco Portugués
 Date: 2023-09-25
-Category: Investigación y Análisis
+Category: 2. Investigación y Análisis
 
 
 

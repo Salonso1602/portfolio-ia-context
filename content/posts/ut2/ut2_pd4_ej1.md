@@ -1,6 +1,6 @@
 Title: Intro a Sklearn II: Guía de Kaggle. Modelado y Evaluación
 Date: 2023-08-30
-Category: Intro
+Category: 1. Introducciones
 
 ## Agregamos los imports necesarios  
 Numpy y Pandas los usaremos para las operaciones y manipulación de datos.  
