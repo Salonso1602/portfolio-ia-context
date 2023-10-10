@@ -35,7 +35,7 @@
               <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
              
               <ul class="columns">
-                <li><a href="https://salonso1602.github.io/">Home</a></li>
+                <li><a href="https://salonso1602.github.io/">Bienvenido</a></li>
 
                   <li><a href="https://salonso1602.github.io/category/1-introducciones.html">1. Introducciones</a></li>
                   <li><a href="https://salonso1602.github.io/category/2-investigacion-y-analisis.html">2. Investigación y Análisis</a></li>
@@ -65,8 +65,21 @@
               </address>
             </footer><!-- /.post-info -->
             <div class="entry-content">
-              <p>En el presente documento ejemplificaremos y revisaremos la aplicación de los algoritmos de regresión para la predicción de valores.<br>
-Utilizaremos los siguientes datos que buscan predecir la probabilidad de un segundo ataque de corazón en pacientes según datos como edad, sexo, colesterol entre otros. <br>
+              <p>En el presente documento ejemplificaremos y revisaremos la aplicación de los algoritmos de regresión para la predicción de valores.  </p>
+<h3 id="caracteristicas-del-modelo">Características del modelo:</h3>
+<p><strong>Usos</strong>: Clasificación Binaria (exclusivamente)<br>
+<strong>Representación</strong>:<br>
+<img alt="Pelican" src="../../images/ut3_ta4_files/image.png">  <br>
+<strong>Explicación Breve</strong>: Calcula la probabilidad, o chances,  por medio de la función logística<br>
+<strong>Cualidades</strong>:
+- Se asume relación lineal entre atributos y objetivo
+- Inestable con entrenamientos pequeños<br>
+- Inestable con clases bien separadas  </p>
+<p><strong>Preparación de Datos</strong>: <br>
+- Reducir Ruido, Outliers y Ejemplos erróneos
+- Preferir una distribución normal/gaussiana
+- Se deben eliminar atributos demasiado correlacionados</p>
+<p>Utilizaremos los siguientes datos que buscan predecir la probabilidad de un segundo ataque de corazón en pacientes según datos como edad, sexo, colesterol entre otros. <br>
 Primero importaremos las librerías necesarias y los datos:    </p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -270,7 +283,7 @@ Segundo podemos ver representado la matriz de confusión, que nos permite ver cl
 
   </ul>
   
-  <h4>Categories</h4>
+  <h4>Categorías</h4>
   <ul class="blank">
     <li><a href="https://salonso1602.github.io/category/1-introducciones.html">1. Introducciones</a></li>
     <li><a href="https://salonso1602.github.io/category/2-investigacion-y-analisis.html">2. Investigación y Análisis</a></li>

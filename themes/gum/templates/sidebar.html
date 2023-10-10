@@ -1,7 +1,7 @@
 <div class="three columns">
 
   {% if DISPLAY_PAGES_ON_MENU %}
-  <h4>Pages</h4>
+  <h4>Páginas</h4>
 
   <ul>
     {% for title, link in MENUITEMS %}
@@ -17,7 +17,7 @@
   
   {% if DISPLAY_CATEGORIES_ON_MENU %}
   {% if categories and categories|length > 1 %}
-  <h4>Categories</h4>
+  <h4>Categorías</h4>
   <ul class="blank">
     {% for cat, null in categories %}
     <li><a href="{{ SITEURL }}/{{ cat.url|e }}">{{ cat }}</a></li>

@@ -4,6 +4,22 @@ Category: 3. Algoritmos Machine Learning
 
 
 En el presente documento ejemplificaremos y revisaremos la aplicación de los algoritmos de regresión para la predicción de valores.  
+
+### Características del modelo:  
+**Usos**: Clasificación Binaria (exclusivamente)  
+**Representación**:  
+ ![Pelican](../../images/ut3_ta4_files/image.png)    
+**Explicación Breve**: Calcula la probabilidad, o chances,  por medio de la función logística  
+**Cualidades**:
+- Se asume relación lineal entre atributos y objetivo
+- Inestable con entrenamientos pequeños  
+- Inestable con clases bien separadas  
+
+**Preparación de Datos**:   
+- Reducir Ruido, Outliers y Ejemplos erróneos
+- Preferir una distribución normal/gaussiana
+- Se deben eliminar atributos demasiado correlacionados
+
 Utilizaremos los siguientes datos que buscan predecir la probabilidad de un segundo ataque de corazón en pacientes según datos como edad, sexo, colesterol entre otros.   
 Primero importaremos las librerías necesarias y los datos:    
 

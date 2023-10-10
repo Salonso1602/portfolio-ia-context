@@ -3,6 +3,20 @@ Date: 2023-09-25
 Category: 3. Algoritmos Machine Learning
 
 Análisis Discriminante Lineal es un algoritmo de machine learning que nos permite la clasificación multi-clase de datos, permitiendo la predicción de campos polinomiales.  
+
+### Características del modelo:  
+**Usos**: Clasificación polinómica (categórica)  
+**Explicación Breve**: Utiliza probabilidades de los atributos respecto el objetivo para predecir. Usa Bayes  
+**Cualidades**:  
+- Se asume distribuciones gaussianas de atributos  
+- Se asume misma varianza para todos los atributos   
+
+**Preparación de Datos**:   
+- Eliminar Outliers  
+- Requiere una distribución normal/gaussiana en todos los atributos  
+- Conviene estandarizar (para tener Media=0 y Varianza=1)  
+
+
 En el presente trabajo demostraremos un proceso básico de este algoritmo en Python con SciKit Learn.  
 
 ## Análisis preliminar de Datos  
