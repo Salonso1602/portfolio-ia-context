@@ -94,3 +94,11 @@ Se identifican 400 ejemplos con 25 atributos:
 - Los datos están levemente desbalanceados, ya que hay mas casos que padecen de una enfermedad que los que no.  
 - Existen outliers en varios atributos  
 
+## Procesado de datos
+- Los datos erróneamente ingresados pueden ser computados, ya que no carecen de sentido respecto donde están ingresados, sino que son inconsistentes con los demás datos. Estos los corregimos.  
+- Debido a la gran cantidad de datos faltantes, no podemos simplemente eliminarlos del dataset pues perderíamos mucha información, se decide sustituirlos por los valores promedio del atributo para mantener las proporciones de los datos. 
+- Los outliers los podemos ver en box-plots, y podemos eliminarlos. Se eliminan hasta 10 ejemplos.
+
+## Modelos a utilizarse  
+Debido a la naturaleza de calificación del problema, se deciden probar 2 modelos: Regresión Logística y K-NN.
+Ambos de estos toleran la calificación binomial que buscamos, la diferencia es su tolerancia a los datos polinomiales. Mientras que la regresión logística puede aprovechar estos datos, K-NN no los puede aprovechar ya que los valores polinomiales suelen ser difíciles de calcular distancias, ademas de que asumen una cualidad ordinal de los valores posibles. Para cada modelo serán levemente diferentes la preparación, pero los dos requieren normalización de los datos y limpieza de ruido y outliers.  
