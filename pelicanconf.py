@@ -1,6 +1,6 @@
 AUTHOR = 'salonso1602'
 SITENAME = 'Portfolio de Intro a Aprendizaje Automático'
-SITEURL = 'https://salonso1602.github.io/'
+SITEURL = ''
 
 PATH = 'content'
 

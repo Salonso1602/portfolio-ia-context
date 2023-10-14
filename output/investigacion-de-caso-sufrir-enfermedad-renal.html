@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="spanish">
+<head>
+
+        <title>Investigación de Caso: Sufrir Enfermedad Renal</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="/">Portfolio de Intro a Aprendizaje Automático <strong>por Rafael Alonso</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="/">Bienvenido</a></li>
+
+                  <li><a href="/category/1-introducciones.html">1. Introducciones</a></li>
+                  <li class="active"><a href="/category/2-investigacion-y-analisis.html">2. Investigación y Análisis</a></li>
+                  <li><a href="/category/3-algoritmos-machine-learning.html">3. Algoritmos Machine Learning</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="/investigacion-de-caso-sufrir-enfermedad-renal.html" rel="bookmark"
+                   title="Permalink to Investigación de Caso: Sufrir Enfermedad Renal">Investigación de Caso: Sufrir Enfermedad Renal</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2023-10-14T00:00:00-03:00">
+                sáb. 14 Octubre 2023
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="/author/salonso1602.html"> salonso1602</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h3 id="de-uci-dataset-chronic-kidney-disease">de UCI Dataset <a href="https://archive.ics.uci.edu/dataset/336/chronic+kidney+disease">Chronic Kidney Disease</a></h3>
+<h2 id="introduccion">Introducción</h2>
+<p>Este caso presenta un problema de clasificación, donde buscamos predecir si una persona padece una enfermedad crónica de los riñones a partir una serie amplia de datos de salud de las personas. Este ejercicio plantea un desafío de investigación importante, ya que el set y la publicación cuentan con muy poco contexto o información extra del problema, por lo que debemos asesorarnos nosotros mismos.  </p>
+<h2 id="comprension-del-problema-garcia-g-2014">Comprensión del problema (García G. 2014)</h2>
+<p>La detección temprana de enfermedades renales es esencial para lograr un tratamiento exitoso y no severamente caro. Los síntomas son prevalentes en la población más afectadas, como mayores de 60 años, por lo que no llaman la atención. Aproximadamente 10% de la población padece una enfermedad así, y su detección temprana es esencial, por lo que un modelo de aprendizaje de estadísticas puede asistir tanto a personal medico como a la población notar los indicios y buscar los tratamientos necesarios.   </p>
+<p>Entre síntomas o signos de enfermedades renales se destacan:<br>
+- Hinchazón de Cara<br>
+- Pérdida de Apetito<br>
+- Hipertensión<br>
+- Anemia y Debilidad<br>
+- Molestias no especificas<br>
+    - Como dolores, comezón, crecimiento tardío, baja estatura, entre otros.<br>
+- Molestias Urinarias<br>
+    - Como ardor, obstrucción o poco volumen<br>
+- Proteínas o Sangre en la orina<br>
+- Niveles altos de Creatinina (+ de 1,4mg/dl) y Urea (+ de 40mg/dl) en sangre 
+- Hemoglobina baja en sangre<br>
+- Azúcar, proteínas sacáridas, colesterol, potasio, cloro, sodio, calcio, fósforo, bicarbonato entre otros en sangre.</p>
+<p>Se destacan como personas de riesgo de padecer también a:
+- Personas con Diabetes<br>
+- Personas con hipertensión  0
+- Personas con antecedentes familiares<br>
+- Obesos, fumadores y/o mayores de 60 años   </p>
+<blockquote>
+<p><em>Información tomada de García, G., Pandya, S., &amp; Chavez, J. (2014). Guía completa para pacientes renales. Obtenido de Kidney Education Foundation: http://www.kidneyinspanish. com/chapters/ch13.php</em></p>
+</blockquote>
+<h2 id="evaluacion-de-datos">Evaluación de Datos</h2>
+<p>Se identifican 400 ejemplos con 25 atributos:<br>
+1. Edad(Numérico)<br>
+    age en Años<br>
+2. Presión Sanguínea(Numérico)<br>
+    bp en mm/Hg<br>
+3. Specific Gravity(Categórico)<br>
+    sg - (1.005,1.010,1.015,1.020,1.025)<br>
+4. Albumin(Categórico)<br>
+    al - (0,1,2,3,4,5)<br>
+5. Azúcar(Categórico)<br>
+    su - (0,1,2,3,4,5)<br>
+6. Células Rojas(Binomial)<br>
+    rbc - (normal,abnormal)<br>
+7. Pus Cell (Binomial)<br>
+    pc - (normal,abnormal)<br>
+8. Pus Cell clumps(Binomial)<br>
+    pcc - (present, notpresent)<br>
+9. Bacteria(Binomial)<br>
+    ba  - (present, notpresent)<br>
+10. Glucosa en Sangre Random(Numérico)      <br>
+    bgr en mgs/dl<br>
+11. Sangre Urea(Numérico)   <br>
+    bu en mgs/dl<br>
+12. Serum Creatinine(Numérico)  <br>
+    sc en mgs/dl<br>
+13. Sodio(Numérico)<br>
+    sod en mEq/L<br>
+14. Potasio(Numérico)   <br>
+    pot en mEq/L<br>
+15. Hemoglobina (Numérico)<br>
+    hemo en gms<br>
+16. Packed  Cell Volume(Numérico)<br>
+17. Células Blancas Cell Count(Numérico)<br>
+    wc en cells/cumm<br>
+18. Conteo Células Rojas(Numérico)  <br>
+    rc en millions/cmm<br>
+19. Hypertension (Binomial) <br>
+    htn - (yes,no)<br>
+20. Diabetes Mellitus(Binomial) <br>
+    dm - (yes,no)<br>
+21. Coronary Artery Disease(Binomial)<br>
+    cad - (yes,no)<br>
+22. Apetito (Binomial)  <br>
+    appet - (good,poor)<br>
+23. Pedal Edema(Binomial)<br>
+    pe - (yes,no)   <br>
+24. Anemia(Binomial)<br>
+    ane - (yes,no)<br>
+25. Class (Binomial, Objetivo)      <br>
+    class - (ckd,notckd):  Si padece o no una enfermedad renal crónica (ckd por la sigla en inglés)</p>
+<h2 id="estadisticas-de-los-datos-sin-procesar">Estadísticas de los datos sin procesar</h2>
+<p><img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-1.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-2.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-3.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-4.png">  </p>
+<h2 id="evaluaciones-de-los-datos">Evaluaciones de los datos</h2>
+<ul>
+<li>Se identifican muchos valores faltantes en varios atributos, algunos tan graves que casi la mitad de los ejemplos los carecen.  </li>
+<li>appet, pe y class tienen valores erróneos.  </li>
+<li>Los datos están levemente desbalanceados, ya que hay mas casos que padecen de una enfermedad que los que no.  </li>
+<li>Existen outliers en varios atributos  </li>
+</ul>
+<h2 id="procesado-de-datos">Procesado de datos</h2>
+<ul>
+<li>Los datos erróneamente ingresados pueden ser computados, ya que no carecen de sentido respecto donde están ingresados, sino que son inconsistentes con los demás datos. Estos los corregimos.   </li>
+<li>Debido a la gran cantidad de datos faltantes, no podemos simplemente eliminarlos del dataset pues perderíamos mucha información, se decide sustituirlos por los valores promedio del atributo para mantener las proporciones de los datos.  </li>
+<li>Los outliers los podemos ver en box-plots, y podemos eliminarlos. Se eliminan hasta 10 ejemplos.  </li>
+<li>Basándonos exclusivamente en la documentación, reducimos a los siguientes atributos como los más relevantes:  <ul>
+<li>appet(cat), htn(cat), bp, rc, rbc(cat), hemo, ane(cat), bu, sc, su(cat), dm(cat), pot, sod, age  </li>
+</ul>
+</li>
+<li>Se decide omitir el atributo de edad, ya que la documentación denuncia un sesgo a la detección de la enfermedad en gente de mayor edad. Para evitar reproducir este sesgo en el modelo lo omitimos.  </li>
+<li>Los datos numéricos son normalizados debido a la variedad de unidades y rangos entre los datos.  </li>
+<li>Como prevención de nuestro razonamiento, también se utilizarán algoritmos de selección de atributos</li>
+</ul>
+<h2 id="modelos-a-utilizarse">Modelos a utilizarse</h2>
+<p>Debido a la naturaleza de calificación del problema, se deciden probar 3 modelos: Regresión Logística, Naive Bayes y K-NN.
+Todos estos toleran la calificación binomial que buscamos, la diferencia es su tolerancia a los datos polinomiales. Mientras que la regresión logística puede aprovechar estos datos, K-NN no los puede aprovechar ya que los valores polinomiales suelen ser difíciles de calcular distancias, ademas de que asumen una cualidad ordinal de los valores posibles. Para cada modelo serán levemente diferentes la preparación, pero los dos requieren normalización de los datos y limpieza de ruido y outliers.  </p>
+<h2 id="procesos-formulados">Procesos Formulados</h2>
+<p><strong>Proceso General:</strong><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-5.png">  </p>
+<p><strong>Basic Fixes:</strong><br>
+Aquí se realizan los arreglos mencionados previamente, específicamente los errores de tipeo, rellenado de valores faltantes y eliminación de outliers. Las normalizaciones se realizan luego en las cross validation para evitar el leak de resultados en el testing. <br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-6.png">  </p>
+<p><strong>Aplicar Modelos:</strong><br>
+Aquí creamos y probamos nuestros modelos con cross validation (10 folds). También seleccionamos los atributos óptimos para cada algoritmo que utilizamos.<br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-7.png"> <br>
+Internamente todos los cross validation son análogos, con los diferentes algoritmos.<br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-8.png">  </p>
+<blockquote>
+<p>De la misma estructura son los cross validation que se utilizan para la aplicación de la selección de atributos evolutiva.  </p>
+</blockquote>
+<h2 id="resultados">Resultados</h2>
+<h3 id="atributos-resultantes-de-la-seleccion-evolutiva">Atributos resultantes de la selección evolutiva:</h3>
+<p><strong>LR:</strong><br>
+- appet<br>
+- sg<br>
+- ba<br>
+- sod<br>
+- pcv<br>
+- htn  </p>
+<p><strong>K-NN:</strong><br>
+- pe<br>
+- appet<br>
+- sg<br>
+- al<br>
+- rbc<br>
+- pc<br>
+- ba<br>
+- sc<br>
+- pcv<br>
+- rc<br>
+- htn<br>
+- cad<br>
+- ane  </p>
+<h3 id="matriz-de-correlacion">Matriz de Correlación:</h3>
+<p><img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-9.png">  </p>
+<h3 id="puntajes-de-precision">Puntajes de Precisión:</h3>
+<p><strong>Naive Bayes:</strong><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-10.png">  </p>
+<p><strong>K-NN:</strong><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-11.png">  </p>
+<p><strong>Regresión Logística:</strong><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-12.png">  </p>
+<p><strong>K-NN Evolutiva:</strong><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-13.png">  </p>
+<p><strong>RL Evolutiva:</strong><br>
+<img alt="Pelican" src="../../images/casosExtra/kidneyDisease/image-14.png">  </p>
+<h2 id="conclusiones-y-comentarios">Conclusiones y Comentarios</h2>
+<ul>
+<li>Todos los algoritmos cuentan con un performance sumamente bueno, pero esto puede ser producto de sobre-ajuste provocado por nuestro rellenado de atributos faltantes o por el sesgo de los atributos. Esto es especialmente notorio en los algoritmos cuyos atributos fueron seleccionados por la selección evolutiva, ya que estos no reflejan los argumentos planteados en la documentación citada durante la investigación del problema.  </li>
+<li>De todas formas, los algoritmos prueban ser muy buenos dado el contexto favorable planteado por el problema, pudiendo aprovechar bien el valor de cada dato. Su validez no debe ser tomada de forma indiscriminada y debe ser juzgado por datos diferentes externos al grupo de entrenamiento para comprobar si existe realmente un sobre-ajuste.  </li>
+<li>Este caso permitió al equipo no solo realizar un trabajo de datos importante y completo, sino también la parte de investigación más completa presenta un aprendizaje importante. Cuidar la salud renal no es poca cosa.  </li>
+</ul>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  </ul>
+  
+  <h4>Categorías</h4>
+  <ul class="blank">
+    <li><a href="/category/1-introducciones.html">1. Introducciones</a></li>
+    <li><a href="/category/2-investigacion-y-analisis.html">2. Investigación y Análisis</a></li>
+    <li><a href="/category/3-algoritmos-machine-learning.html">3. Algoritmos Machine Learning</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="https://github.com/Salonso1602">Github</a></li>
+    <li><a href="https://www.linkedin.com/in/santiago-rafael-alonso-mendez-374106218/">LinkedIn</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/Salonso1602" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+</body>
+</html>
