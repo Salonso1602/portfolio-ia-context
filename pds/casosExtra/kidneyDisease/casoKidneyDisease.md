@@ -46,9 +46,9 @@ Se identifican 400 ejemplos con 25 atributos:
 7. Pus Cell (Binomial)  
 	pc - (normal,abnormal)  
 8. Pus Cell clumps(Binomial)  
-	pcc - (present,notpresent)  
+	pcc - (present, notpresent)  
 9. Bacteria(Binomial)  
-	ba  - (present,notpresent)  
+	ba  - (present, notpresent)  
 10. Glucosa en Sangre Random(Numérico)		  
 	bgr en mgs/dl  
 11. Sangre Urea(Numérico)	  
@@ -92,4 +92,5 @@ Se identifican 400 ejemplos con 25 atributos:
 - Se identifican muchos valores faltantes en varios atributos, algunos tan graves que casi la mitad de los ejemplos los carecen.  
 - appet, pe y class tienen valores erróneos.  
 - Los datos están levemente desbalanceados, ya que hay mas casos que padecen de una enfermedad que los que no.  
-- Existen outliers en varios atributos
+- Existen outliers en varios atributos  
+
