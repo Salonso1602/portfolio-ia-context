@@ -1,6 +1,6 @@
 Title: Investigación de Caso: Sufrir Enfermedad Renal
 Date: 2023-10-14
-Category: 2. Investigación y Análisis
+Category: 2. Casos de Estudio
 
 ### de UCI Dataset [Chronic Kidney Disease](https://archive.ics.uci.edu/dataset/336/chronic+kidney+disease)  
 

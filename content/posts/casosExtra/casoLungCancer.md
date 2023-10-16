@@ -1,6 +1,6 @@
 Title: Investigación Caso: Cáncer de Pulmón
 Date: 2023-10-11
-Category: 2. Investigación y Análisis
+Category: 2. Casos de Estudio
 
 ### de UCI Dataset: [Lung Cancer](https:/archive.ics.uci.edu/dataset/62/lung+cancer)  
 

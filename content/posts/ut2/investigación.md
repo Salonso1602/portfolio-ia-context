@@ -1,6 +1,6 @@
 Title: Evaluación de Set "Wine"
 Date: 2023-08-22
-Category: 2. Investigación y Análisis
+Category: 2. Casos de Estudio
 
 Este set contiene 14 variables químicas de vino hechos en una región de Italia, pero de 3 viñedos diferentes. Es un set bastante limpio sin datos faltantes.  
 No presenta un problema como tal, sino que provee datos que nos permiten encontrar estructuras y consistencias entre los vinos de cada viñedo, presentando un claro problema de clasificación, donde a partir de cualidades podemos tratar de inferir a que viñedo pertenecería.  

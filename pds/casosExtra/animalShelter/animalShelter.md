@@ -49,12 +49,12 @@ Contamos con 2 datasets distintos, los cuales reflejan registros de entrada y sa
 ## Estadísticas de los datos  
 De Rapidminer sacamos los siguientes datos de los sets tal cual están:  
 ### Set Intakes:  
-![Alt text](image.png)  
-![Alt text](image-1.png)  
+![Pelican](./images/image.png)  
+![Pelican](./images/image-1.png)  
 
 ### Set Outcomes:  
-![Alt text](image-2.png)  
-![Alt text](image-3.png)  
+![Pelican](./images/image-2.png)  
+![Pelican](./images/image-3.png)  
 
 ## Transformaciones de los datos    
 Se realizan los siguientes cambios y transformaciones a los datos:  
@@ -79,6 +79,104 @@ Se realizan los siguientes cambios y transformaciones a los datos:
 - se define columna adopted en base a outcome_type y subtype como binomial para saber si la mascota fue adoptada o no  
 
 ### Por último:  
-- Se unen ambos sets en un unico set. Se realiza un Left Join tipo Intake -> Outcome para mantener las mascotas que aún no tienen hogar.  
+- Se unen ambos sets en un único set. Se realiza un Left Join tipo Intake -> Outcome para mantener las mascotas que aún no tienen hogar.  
+- Se calcula la ultima edad conocida, este atributo es igual a la edad a la que la mascota se fue, y si no se fue es la edad actual de la misma.  
+- Se remueven atributos demasiado correlacionados con la salida (los específicos de la tabla outcomes)  
 
-> Todo esto se realiza con bastante facilidad en el turbo prep de Rapidminer, permitiendonos generar un nuevo csv con los datos transformados y generados.  
+> Todo esto se realiza con bastante facilidad en el turbo prep de Rapidminer, permitiéndonos generar un nuevo csv con los datos transformados y generados.  
+
+### Resulta el siguiente Dataset:  
+![Pelican](./images/image-4.png)  
+![Pelican](./images/image-5.png)  
+![Pelican](./images/image-6.png)  
+
+**Notas:**  
+- Se denota un desbalance importante a mascotas que no fueron adoptadas sobre las que sí  
+- Se dejan varios atributos a pesar de tal vez no su obvia necesidad para contar con ellos para procesos de selección de atributos  
+- Se denota una mayoría muy alta de perros en el refugio.  
+ 
+
+## Modelos a Utilizarse  
+Para el presente trabajo contamos con unos pocos datos numéricos, varios categóricos y un ejercicio de clasificación binomial, por lo que optamos por el uso de **Naive Bayes y Regresión Logística**.  
+Para ambos de estos debemos normalizar los valores numéricos, decidir que hacer con valores faltantes y utilizar metodologías de ingeniería de atributos o algoritmos para asegurar el mejor performance posible.  
+Similarmente, dado el desbalance de varios de los atributos se decide utilizar SMOTE Upsampling para balancear los atributos, especialmente nuestro atributo objetivo "adopted".  
+Estos modelos los utilizaremos en 3 contextos diferentes:  
+- Utilizando Selección de Atributos Evolutivo  
+    - Con y sin filtrado de atributos previo    
+- Utilizando Upsampling      
+- No Utilizando Upsampling      
+
+## Decisiones de modelado  
+- Se decidió controlar en Algoritmo Evolutivo ya que por si solo utilizaba atributos no representativos de la realidad esperable y se sospecha sobre-ajuste.  
+- Los valores faltantes son pocos, por lo que se decide eliminarlos para tener el espacio de entrenamiento más limpio posible.  
+
+## Selección de Atributos  
+**Se eliminan por correlación al objetivo los atributos:**  
+- age_upon_outcome_1  
+- current_age  
+- date_of_birth  
+- datetime_left  
+- outcome_subtype  
+- outcome_type  
+
+**Se omiten los siguientes atributos debido a su poca importancia a la hora de elegir una mascota o por ya estar representado en otro atributo:**  
+- age_upon_intake_1  
+- animal_id  
+- datetime  
+- found_location  
+
+## Proceso Final  
+Resulta del trabajo previo los siguientes procesos:  
+![Pelican](./images/image-8.png)  
+![Pelican](./images/image-9.png)   
+*Los atributos seleccionados son:*  
+![Pelican](./images/image-7.png)  
+![Pelican](./images/image-10.png)  
+> Los cross validation son iguales para todos los algoritmos y contextos, con los diferentes modelos cambiados.  
+![Pelican](./images/image-11.png)  
+*Los atributos pre-seleccionados son:*  
+![Pelican](./images/image-15.png)  
+![Pelican](./images/image-14.png)  
+*Los atributos seleccionados son los mismos que en el conjunto con Upsampling*  
+
+## Desempeños  
+### Ingeniería de Atributos  
+- Con Upsampling, Naive Bayes  
+![Pelican](./images/image-12.png)  
+- Con Upsampling, Regresión Logística  
+![Pelican](./images/image-13.png)  
+- Sin Upsampling, Naive Bayes  
+![Pelican](./images/image-16.png)  
+- Sin Upsampling, Regresión Logística  
+![Pelican](./images/image-17.png)  
+
+### Selección Evolutiva  
+![Pelican](./images/image-18.png)  
+Con los atributos:
+- found_location  
+- intake_type  
+- intake_condition  
+
+
+
+![Pelican](./images/image-19.png)  
+Con los atributos:
+- last_recorded_age  
+- intake_type  
+- intake_condition  
+- animal_type  
+- neutered  
+- breed  
+- color  
+
+
+## Conclusiones y Observaciones  
+- A nivel general se logran performances relativamente buenos, superando adivinar aleatoriamente, no obstante debemos notar algunas particularidades de algunos de los resultados:  
+    - El mejor a nivel de porcentaje es Naive Bayes con selección evolutiva sin preselección de atributos pero juzgando por el reducido numero de atributos que usa, las distribuciones de estos y sus puntajes probablemente se trate de sobre-ajuste sobre los datos de entrenamiento y no sea realista.  
+    - El siguiente mejor es regresión logística sin Upsampling. Lo llamativo de este resultado es la diferencia de precisión a predecir entre los valores posibles de adopted. Se denota una precisión de ~75% para el falso y un ~56% para los verdaderos. Esto da un promedio mayor que los otros pero expone el desbalance de falsos en los datos base.  
+    - Finalmente definimos como el modelo más efectivo Naive Bayes con Upsampling, ya que tiene indices de precisión parejos y mayores entre verdaderos y falsos y una precisión general de ~67%.  
+    - Como cercano podríamos poner la regresión logística con Upsampling o el modelo evolutivo con pre selección. Se opta por el primero ya que se confía más en la selección razonada que la calculada basada en los datos que se tienen unicamente.  
+- La herramienta de Rapidminer de Turbo Prep es sumamente buena para generar y modificar columnas como manipular data sets, pero tiene un costo de recursos enlentecimientos considerables con sets grandes, por lo que si el equipo que se usa no lo puede soportar no es viable y se debe hacer por otro medio.  
+- La ingeniería de atributos es una parte importante del proceso de modelado de Machine Learning. Sea para seleccionar atributos influyentes en el resultado buscado o para la limpieza y generación de datos nuevos pero más jugosos. La preparación de datos aba5rca la mayor parte del proceso de Machine Learning, y la ingeniería de atributos es su desarrollo exhaustivo.    
+- Independiente de cualquier conclusión que pueda sacar cualquier modelo de machine learning, visto aquí o no, la probabilidad de un ser vivo a ser adoptado no puede ser reducido a mera estadística y tomar decisiones sobre la vida del mismo al respecto. **Ningún animal debe ser sacrificado o desechado como producto de cualquier predicción hecha y debe dársele a los animales rescatados todas las oportunidades de llegar a su casa permanente y vivir una vida digna.**  
+

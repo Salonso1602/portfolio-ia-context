@@ -6,7 +6,7 @@ PATH = 'content'
 
 TIMEZONE = 'America/Argentina/Buenos_Aires'
 
-DEFAULT_LANG = 'Spanish'
+DEFAULT_LANG = 'es'
 
 
 # Feed generation is usually not desired when developing

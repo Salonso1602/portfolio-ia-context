@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+        <title>Investigación de Caso: Adopción en refugio animal</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="/">Portfolio de Intro a Aprendizaje Automático <strong>por Rafael Alonso</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="/">Bienvenido</a></li>
+
+                  <li><a href="/category/1-introducciones.html">1. Introducciones</a></li>
+                  <li class="active"><a href="/category/2-casos-de-estudio.html">2. Casos de Estudio</a></li>
+                  <li><a href="/category/3-algoritmos-machine-learning.html">3. Algoritmos Machine Learning</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="/investigacion-de-caso-adopcion-en-refugio-animal.html" rel="bookmark"
+                   title="Permalink to Investigación de Caso: Adopción en refugio animal">Investigación de Caso: Adopción en refugio animal</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2023-10-15T00:00:00-03:00">
+                dom. 15 Octubre 2023
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="/author/salonso1602.html"> salonso1602</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h2 id="introduccion">Introducción</h2>
+<p>Se nos plantea un problema de clasificación, donde contamos con dos conjuntos de datos, de entrada de animales al refugio y de salida. Este ejercicio plantea un objetivo a primera vista noble, pero que conlleva una pre producción de datos considerable dada la naturaleza de los datos que se cuentan y los datos que podamos razonar que necesitamos o influyen en el objetivo. En este caso nos apoyaremos en el Turbo Prep de Rapidminer mucho.  </p>
+<h2 id="contexto-del-problema">Contexto del problema</h2>
+<p>Todos los días nos encontramos con animales sin hogar, desde el perro en la calle al gato que queda en la casa de una familia que se vá o la cabra que se escapó de su granja, para todos estos animales corresponde y se merecen un hogar y en general son los refugios de animales quienes los reciben en periodos de transición para que estas criaturas puedan llegar a un nuevo hogar. Estos refugios suelen manejar fondos cortos y muchos animales, por lo que deben ser precavidos con quienes reciben y quienes pasan a otros refugios o casas de transición, por lo que hoy veremos un modelo que les permita intentar de predecir si una mascota es probable que sea adoptada en el refugio en el que está o si es mejor que vaya a otro a buscar su hogar permanente.  </p>
+<h2 id="evaluacion-de-los-datos">Evaluación de los datos</h2>
+<p>Contamos con 2 datasets distintos, los cuales reflejan registros de entrada y salida de animales del refugio, más algunos datos de las mascotas y las características de su llegada y su salida. Ambos cuentan con 10.000 tuplas.  </p>
+<h3 id="en-los-registros-de-entrada-tenemos-12-atributos">En los registros de entrada tenemos 12 atributos:</h3>
+<ul>
+<li>animal_id  (Categórico, id único de la mascota)  </li>
+<li>name (Categórico, nombre de la mascota)  </li>
+<li>datetime (FechaHora, cuando llego al refugio)  </li>
+<li>monthyear (FechaHora, cuando llego al refugio)  </li>
+<li>found_location (Categórico, dirección donde se encontró)  </li>
+<li>intake_type (Categórico, como llegó al refugio Ej: de la calle, entregado por el dueño, etc.)  </li>
+<li>intake_condition (Categórico, condición como llegó al refugio Ej: enfermo, normal, etc.)  </li>
+<li>animal_type (Categórico, que animal es)  </li>
+<li>sex_upon_intake (Categórico, el genero del animal y si está castrado o no)  </li>
+<li>age_upon_intake (Categórico, edad del animal cuando llegó)  </li>
+<li>breed (Categórico, raza del animal)  </li>
+<li>color (Categórico, color/es del animal)  </li>
+</ul>
+<h3 id="en-los-registros-de-salida-tenemos-tambien-12-atributos">En los registros de salida tenemos también 12 atributos:</h3>
+<ul>
+<li>animal_id  (Categórico, id único de la mascota)  </li>
+<li>name (Categórico, nombre de la mascota)  </li>
+<li>datetime (FechaHora, cuando llego al refugio)  </li>
+<li>monthyear (FechaHora, cuando llego al refugio)  </li>
+<li>date_of_birth (Fecha, cuando se estima que nació el animal)  </li>
+<li>outcome_type (Categórico, como se fue del refugio Ej: devuelto al dueño, adoptado, etc.)  </li>
+<li>outcome_subtype (Categórico, más detalle de como se fué, solo aplicable a algunos valores de outcome_type sino nulo)    </li>
+<li>animal_type (Categórico, que animal es)  </li>
+<li>sex_upon_outcome (Categórico, el genero del animal y si está castrado o no)  </li>
+<li>age_upon_outcome (Categórico, edad del animal cuando se fué)  </li>
+<li>breed (Categórico, raza del animal)  </li>
+<li>color (Categórico, color/es del animal)  </li>
+</ul>
+<h3 id="de-evaluar-los-datos-sacamos-las-siguientes-conclusiones-yo-transformaciones-necesarias">De evaluar los datos sacamos las siguientes conclusiones y/o transformaciones necesarias:</h3>
+<ul>
+<li>datetime y monthyear de ambos sets contienen los mismos datos, por lo que una de las dos puede eliminarse.  </li>
+<li>Tenemos la el momento en el que llega o se va el animal y la edad respecto a estas fechas, probablemente sea más manejable utilizar un atributo de  fecha de nacimiento para ambas tablas para poder predecir mejor en base de este atributo importante (cachorros son más propensos a ser adoptados).  </li>
+<li>Datos como nombre o ubicación donde lo rescataron seguramente no influyan mucho sobre si se va a adoptar al animal o no.  </li>
+<li>Tenemos tanto el genero del animal como si está castrado o no en el mismo atributo, esto podríamos separarlo.  </li>
+<li>En la tabla de salidas tenemos amplias razones por la que el animal abandona el refugio, pero para el presente trabajo nos interesa si fue adoptado o no, por lo que podemos reducir el atributo a estas dos opciones unicamente.  </li>
+<li>Un subtipo de adopción es que fué enviado a una casa transitoria. A efectos de este estudio no lo consideraremos como caso favorable.  </li>
+<li>Las edades registradas fueron ingresadas como "n years" o "n weeks" entre otros, deberemos plantear una medida de tiempo común para todos estos para poder aprovechar el dato numérico y calcular las edades reales de las mascotas.  </li>
+</ul>
+<h2 id="estadisticas-de-los-datos">Estadísticas de los datos</h2>
+<p>De Rapidminer sacamos los siguientes datos de los sets tal cual están:  </p>
+<h3 id="set-intakes">Set Intakes:</h3>
+<p><img alt="Pelican" src="../../images/casosExtra/animalShelter/image.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-1.png">  </p>
+<h3 id="set-outcomes">Set Outcomes:</h3>
+<p><img alt="Pelican" src="../../images/casosExtra/animalShelter/image-2.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-3.png">  </p>
+<h2 id="transformaciones-de-los-datos">Transformaciones de los datos</h2>
+<p>Se realizan los siguientes cambios y transformaciones a los datos:  </p>
+<h3 id="en-intake">En Intake:</h3>
+<ul>
+<li>se borra name y monthyear</li>
+<li>se arregla date de datetime (a tipo datetime correcto)</li>
+<li>age intake corregido a unicamente años (menores de 1 año quedan como 0 años)  </li>
+<li>age se convierte en atributo numérico  </li>
+<li>se divide sex a neutered y sex  </li>
+<li>se arreglan nulls o desconocidos mal definidos o no detectados  </li>
+<li>se calcula año de nacimiento de la mascota con age de llegada y fecha de llegada  </li>
+</ul>
+<h3 id="en-outcome">En Outcome:</h3>
+<ul>
+<li>se cambia datetime a datetime-left para diferenciarlo del set Intakes  </li>
+<li>se borra name y monthyear</li>
+<li>se arregla date de datetime (a tipo datetime correcto)</li>
+<li>age intake corregido a unicamente años (menores de 1 año quedan como 0 años)  </li>
+<li>age se convierte en atributo numérico  </li>
+<li>se divide sex a neutered y sex  </li>
+<li>se arreglan nulls o desconocidos mal definidos o no detectados  </li>
+<li>se define columna adopted en base a outcome_type y subtype como binomial para saber si la mascota fue adoptada o no  </li>
+</ul>
+<h3 id="por-ultimo">Por último:</h3>
+<ul>
+<li>Se unen ambos sets en un único set. Se realiza un Left Join tipo Intake -&gt; Outcome para mantener las mascotas que aún no tienen hogar.  </li>
+<li>Se calcula la ultima edad conocida, este atributo es igual a la edad a la que la mascota se fue, y si no se fue es la edad actual de la misma.  </li>
+<li>Se remueven atributos demasiado correlacionados con la salida (los específicos de la tabla outcomes)  </li>
+</ul>
+<blockquote>
+<p>Todo esto se realiza con bastante facilidad en el turbo prep de Rapidminer, permitiéndonos generar un nuevo csv con los datos transformados y generados.  </p>
+</blockquote>
+<h3 id="resulta-el-siguiente-dataset">Resulta el siguiente Dataset:</h3>
+<p><img alt="Pelican" src="../../images/casosExtra/animalShelter/image-4.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-5.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-6.png">  </p>
+<p><strong>Notas:</strong><br>
+- Se denota un desbalance importante a mascotas que no fueron adoptadas sobre las que sí<br>
+- Se dejan varios atributos a pesar de tal vez no su obvia necesidad para contar con ellos para procesos de selección de atributos<br>
+- Se denota una mayoría muy alta de perros en el refugio.  </p>
+<h2 id="modelos-a-utilizarse">Modelos a Utilizarse</h2>
+<p>Para el presente trabajo contamos con unos pocos datos numéricos, varios categóricos y un ejercicio de clasificación binomial, por lo que optamos por el uso de <strong>Naive Bayes y Regresión Logística</strong>.<br>
+Para ambos de estos debemos normalizar los valores numéricos, decidir que hacer con valores faltantes y utilizar metodologías de ingeniería de atributos o algoritmos para asegurar el mejor performance posible.<br>
+Similarmente, dado el desbalance de varios de los atributos se decide utilizar SMOTE Upsampling para balancear los atributos, especialmente nuestro atributo objetivo "adopted".<br>
+Estos modelos los utilizaremos en 3 contextos diferentes:<br>
+- Utilizando Selección de Atributos Evolutivo<br>
+    - Con y sin filtrado de atributos previo  <br>
+- Utilizando Upsampling    <br>
+- No Utilizando Upsampling      </p>
+<h2 id="decisiones-de-modelado">Decisiones de modelado</h2>
+<ul>
+<li>Se decidió controlar en Algoritmo Evolutivo ya que por si solo utilizaba atributos no representativos de la realidad esperable y se sospecha sobre-ajuste.  </li>
+<li>Los valores faltantes son pocos, por lo que se decide eliminarlos para tener el espacio de entrenamiento más limpio posible.  </li>
+</ul>
+<h2 id="seleccion-de-atributos">Selección de Atributos</h2>
+<p><strong>Se eliminan por correlación al objetivo los atributos:</strong><br>
+- age_upon_outcome_1<br>
+- current_age<br>
+- date_of_birth<br>
+- datetime_left<br>
+- outcome_subtype<br>
+- outcome_type  </p>
+<p><strong>Se omiten los siguientes atributos debido a su poca importancia a la hora de elegir una mascota o por ya estar representado en otro atributo:</strong><br>
+- age_upon_intake_1<br>
+- animal_id<br>
+- datetime<br>
+- found_location  </p>
+<h2 id="proceso-final">Proceso Final</h2>
+<p>Resulta del trabajo previo los siguientes procesos:<br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-8.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-9.png"> <br>
+<em>Los atributos seleccionados son:</em><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-7.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-10.png">  </p>
+<blockquote>
+<p>Los cross validation son iguales para todos los algoritmos y contextos, con los diferentes modelos cambiados.<br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-11.png"><br>
+<em>Los atributos pre-seleccionados son:</em><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-15.png"><br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-14.png"><br>
+<em>Los atributos seleccionados son los mismos que en el conjunto con Upsampling</em>  </p>
+</blockquote>
+<h2 id="desempenos">Desempeños</h2>
+<h3 id="ingenieria-de-atributos">Ingeniería de Atributos</h3>
+<ul>
+<li>Con Upsampling, Naive Bayes<br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-12.png">  </li>
+<li>Con Upsampling, Regresión Logística<br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-13.png">  </li>
+<li>Sin Upsampling, Naive Bayes<br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-16.png">  </li>
+<li>Sin Upsampling, Regresión Logística<br>
+<img alt="Pelican" src="../../images/casosExtra/animalShelter/image-17.png">  </li>
+</ul>
+<h3 id="seleccion-evolutiva">Selección Evolutiva</h3>
+<p><img alt="Pelican" src="../../images/casosExtra/animalShelter/image-18.png"><br>
+Con los atributos:
+- found_location<br>
+- intake_type<br>
+- intake_condition  </p>
+<p><img alt="Pelican" src="../../images/casosExtra/animalShelter/image-19.png"><br>
+Con los atributos:
+- last_recorded_age<br>
+- intake_type<br>
+- intake_condition<br>
+- animal_type<br>
+- neutered<br>
+- breed<br>
+- color  </p>
+<h2 id="conclusiones-y-observaciones">Conclusiones y Observaciones</h2>
+<ul>
+<li>A nivel general se logran performances relativamente buenos, superando adivinar aleatoriamente, no obstante debemos notar algunas particularidades de algunos de los resultados:  <ul>
+<li>El mejor a nivel de porcentaje es Naive Bayes con selección evolutiva sin preselección de atributos pero juzgando por el reducido numero de atributos que usa, las distribuciones de estos y sus puntajes probablemente se trate de sobre-ajuste sobre los datos de entrenamiento y no sea realista.  </li>
+<li>El siguiente mejor es regresión logística sin Upsampling. Lo llamativo de este resultado es la diferencia de precisión a predecir entre los valores posibles de adopted. Se denota una precisión de ~75% para el falso y un ~56% para los verdaderos. Esto da un promedio mayor que los otros pero expone el desbalance de falsos en los datos base.  </li>
+<li>Finalmente definimos como el modelo más efectivo Naive Bayes con Upsampling, ya que tiene indices de precisión parejos y mayores entre verdaderos y falsos y una precisión general de ~67%.  </li>
+<li>Como cercano podríamos poner la regresión logística con Upsampling o el modelo evolutivo con pre selección. Se opta por el primero ya que se confía más en la selección razonada que la calculada basada en los datos que se tienen unicamente.  </li>
+</ul>
+</li>
+<li>La herramienta de Rapidminer de Turbo Prep es sumamente buena para generar y modificar columnas como manipular data sets, pero tiene un costo de recursos enlentecimientos considerables con sets grandes, por lo que si el equipo que se usa no lo puede soportar no es viable y se debe hacer por otro medio.  </li>
+<li>La ingeniería de atributos es una parte importante del proceso de modelado de Machine Learning. Sea para seleccionar atributos influyentes en el resultado buscado o para la limpieza y generación de datos nuevos pero más jugosos. La preparación de datos aba5rca la mayor parte del proceso de Machine Learning, y la ingeniería de atributos es su desarrollo exhaustivo.    </li>
+<li>Independiente de cualquier conclusión que pueda sacar cualquier modelo de machine learning, visto aquí o no, la probabilidad de un ser vivo a ser adoptado no puede ser reducido a mera estadística y tomar decisiones sobre la vida del mismo al respecto. <strong>Ningún animal debe ser sacrificado o desechado como producto de cualquier predicción hecha y debe dársele a los animales rescatados todas las oportunidades de llegar a su casa permanente y vivir una vida digna.</strong>  </li>
+</ul>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  </ul>
+  
+  <h4>Categorías</h4>
+  <ul class="blank">
+    <li><a href="/category/1-introducciones.html">1. Introducciones</a></li>
+    <li><a href="/category/2-casos-de-estudio.html">2. Casos de Estudio</a></li>
+    <li><a href="/category/3-algoritmos-machine-learning.html">3. Algoritmos Machine Learning</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="https://github.com/Salonso1602">Github</a></li>
+    <li><a href="https://www.linkedin.com/in/santiago-rafael-alonso-mendez-374106218/">LinkedIn</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/Salonso1602" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+</body>
+</html>

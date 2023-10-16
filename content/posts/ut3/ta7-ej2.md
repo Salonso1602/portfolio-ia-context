@@ -1,6 +1,6 @@
 Title: Investigación Caso: Academia de Deportistas
 Date: 2023-09-25
-Category: 2. Investigación y Análisis
+Category: 2. Casos de Estudio
 
 ## Contexto  
 El “Maestro”, convencido de su capacidad para vislumbrar estrellas deportivas, ha puesto una
