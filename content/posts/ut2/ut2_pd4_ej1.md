@@ -1,6 +1,11 @@
-Title: Intro a Sklearn II: Guía de Kaggle. Modelado y Evaluación
+Title: Caso de estudio: Titanic en Python
 Date: 2023-08-30
-Category: 1. Introducciones
+Category: 2. Casos de Estudio
+
+## de [Kaggle](https://www.kaggle.com/code/samsonqian/titanic-guide-with-sklearn-and-eda?scriptVersionId=17744221)  
+
+## Introducción  
+El dataset de supervivientes a la catástrofe de Titanic es un sujeto clásico para el ingreso al mundo de Machine Learning, casi el "Hola Mundo" del área. Este set tiene una amplia gama de datos diferentes con sus peculiaridades que lo hacen un conjunto variado y que permite tocar varias áreas del proceso de Machine Learning. En este estudio del caso tratemos de predecir si una persona sobreviviría la catástrofe del Titanic dadas sus características previas al accidente, y con esto una demo de herramientas de Python que podemos usar para Machine Learning.  
 
 ## Agregamos los imports necesarios  
 Numpy y Pandas los usaremos para las operaciones y manipulación de datos.  
